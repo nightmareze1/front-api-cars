@@ -8,11 +8,11 @@ export const IntialCompanyLinksHref = [
 export const HeaderLinks = [
   {
     label: "Home ",
-    href: "#",
+    href: "/",
   },
   {
     label: "Cars",
-    href: "#",
+    href: "/cars",
   },
   {
     label: "Upload Car",
