@@ -60,20 +60,38 @@ export default function CarCard() {
           />
         </Box>
         <Stack pt={10} align={"center"}>
-          <Text color={"gray.500"} fontSize={"sm"} textTransform={"uppercase"}>
-            Brand
+          <Text
+            color={"teal"}
+            fontSize={"sm"}
+            fontWeight={600}
+            textTransform={"uppercase"}
+          >
+            Model
           </Text>
-          <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-            Nice Chair, pink
+          <Heading
+            fontSize={"2xl"}
+            fontFamily={"body"}
+            fontWeight={500}
+            textTransform={"capitalize"}
+          >
+            ferrari
           </Heading>
-          <Stack direction={"row"} align={"center"}>
-            <Text fontWeight={800} fontSize={"xl"}>
+          <Stack mt={"100px"} mb={"1rem"} direction={"row"} align={"center"}>
+            <Text
+              mt={"1rem"}
+              mb={"1rem"}
+              color={"gray.500"}
+              fontSize={"sm"}
+              textTransform={"uppercase"}
+              color={"teal"}
+            >
+              Price
+            </Text>
+            <Heading fontWeight={800} fontSize={"xl"}>
               $57
-            </Text>
-            <Text textDecoration={"line-through"} color={"gray.600"}>
-              $199
-            </Text>
+            </Heading>
           </Stack>
+
           <Stack direction={"row"} align={"center"}>
             <Button
               leftIcon={<BsTrashFill w={5} h={5} />}
