@@ -80,10 +80,9 @@ export default function CarCard() {
             <Text
               mt={"1rem"}
               mb={"1rem"}
-              color={"gray.500"}
               fontSize={"sm"}
               textTransform={"uppercase"}
-              color={"teal"}
+              color="teal"
             >
               Price
             </Text>
