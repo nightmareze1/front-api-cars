@@ -80,7 +80,7 @@ export default function Header() {
             Sign In
           </Button>
           <Button
-            display={{ base: "none", md: "inline-flex" }}
+            display={{ base: "inline-flex", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}

@@ -19,6 +19,8 @@ export default function SerachBar() {
       >
         <Input
           w={"50rem"}
+          color="teal"
+          fontWeight={"bold"}
           value={search}
           onChange={(e) => searchInput(e)}
           placeholder="Search..."
@@ -26,11 +28,12 @@ export default function SerachBar() {
         />
         <Button
           rightIcon={<FiSearch w={5} h={5} />}
-          display={{ base: "none", md: "inline-flex" }}
-          fontSize={"sm"}
-          height={"3rem"}
+          display={{ base: "flex", md: "inline-flex" }}
+          flexFlow={{ base: "column", md: "row" }}
+          height={{ base: "3rem", md: "3rem" }}
           fontWeight={600}
           color={"white"}
+          fontSize={{ base: "small", md: "large" }}
           bg={100}
           href={"#"}
           _hover={{
