@@ -5,6 +5,12 @@ const theme = extendTheme({
     100: "#5ED7C6",
     //Color verde mas oscuro
     200: "#129081",
+
+    300: "#73A9AD",
+
+    400: "#F5F0BB",
+
+    500: "#FFFF",
   },
 });
 

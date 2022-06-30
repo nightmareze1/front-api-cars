@@ -15,9 +15,6 @@ export default function cars() {
       >
         <SerachBar></SerachBar>
         <CarCard></CarCard>
-        <CarCard></CarCard>
-        <CarCard></CarCard>
-        <CarCard></CarCard>
       </Box>
     </ContainerHF>
   );

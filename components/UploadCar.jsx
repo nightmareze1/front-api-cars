@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { FiCamera, FiSave } from "react-icons/fi";
 import { FaCarSide } from "react-icons/fa";
+import { AiFillCar } from "react-icons/ai";
 
 import {
   FaInstagram,
@@ -30,31 +31,32 @@ import {
 } from "react-icons/fa";
 import { useRef } from "react";
 
-export default function SignUp() {
+export default function UploadCar() {
   const refForm = useRef();
 
-  const fetchPost = async (user) => {
+  const fetchPost = async (car) => {
     const { current: form } = refForm;
     const formData = new FormData(form);
-
-    console.log(user);
+    console.log(car);
   };
 
   const handleSumbit = (event) => {
     const { current: form } = refForm;
     // event.preventDefault()
     const formData = new FormData(form);
-    const username = formData.get("username");
-    const password = formData.get("password");
-    const email = formData.get("email");
+    const name = formData.get("name");
+    const description = formData.get("description");
+    const price = formData.get("price");
+    const file = formData.get("file");
+    console.log(file);
 
-    if (formData && username && password && email) {
-      const user = {
-        username,
-        email,
-        password,
+    if (formData && name && description && price) {
+      const car = {
+        name,
+        description,
+        price: parseInt(price),
       };
-      fetchPost(user);
+      fetchPost(car);
     } else {
       alert("faltan datos ");
     }
@@ -67,7 +69,7 @@ export default function SignUp() {
       backgroundSize={"cover"}
       backgroundPosition={"25% 50%"}
       backgroundImage={
-        "url(https://images.unsplash.com/photo-1566816716536-6ab88cbda34e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=826&q=80)"
+        "url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=983&q=80)"
       }
     >
       <Container
@@ -83,11 +85,13 @@ export default function SignUp() {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            <Text color={"teal"} as={"span"}>
-              Enjoy
+            <Text color={200} as={"span"}>
+              Welcome
             </Text>{" "}
-            <Text color={"gray.600"}>the </Text>
-            <Text color={"#1B2430"}>experience</Text>
+            <Text color={300} as={"span"}>
+              to the
+            </Text>{" "}
+            <Text color={500}> upload section</Text>
           </Heading>
 
           <Stack direction={"row"} spacing={4} align={"center"}></Stack>
@@ -105,36 +109,39 @@ export default function SignUp() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Create Account
+              Upload your Car
+              <Text
+                as={"span"}
+                bgGradient="linear(to-r, black ,white)"
+                bgClip="text"
+              >
+                --
+              </Text>
+              <Icon as={AiFillCar} />
+              <Text
+                as={"span"}
+                bgGradient="linear(to-r, white ,black)"
+                bgClip="text"
+              >
+                --
+              </Text>
             </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-              Thank you for choosing us, you are one step away from being part
-              of our website. Complete the form so that we can have your data
-              and you can make use of our services
+              Welcome to the car loading section, do not hesitate to load the
+              car you want in our database. We offer you advice and commitment
+              when putting you in contact with the client so that you can make a
+              safe sale
             </Text>
           </Stack>
           <Box as={"form"} mt={10} ref={refForm}>
             <Stack spacing={4}>
               {/* <form ref={refForm}> */}
 
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Model</FormLabel>
               <Input
                 required
-                placeholder="Username"
-                name="username"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
-              <FormLabel>Password</FormLabel>
-              <Input
-                required
-                type={"password"}
-                placeholder="Password"
-                name="password"
+                placeholder="Model"
+                name="name"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
@@ -143,12 +150,24 @@ export default function SignUp() {
                 }}
               />
 
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Description</FormLabel>
+              <Textarea
+                required
+                placeholder="Description"
+                name="description"
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
+              <FormLabel>Price</FormLabel>
               <Input
                 required
-                name="email"
-                type={"email"}
-                placeholder="Email"
+                name="price"
+                type={"number"}
+                placeholder="Price"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
@@ -157,6 +176,19 @@ export default function SignUp() {
                 }}
               />
 
+              <Input
+                required
+                type={"file"}
+                name="file"
+                placeholder="Upload Img"
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+                multiple
+              />
               <Button
                 // type="submit"
                 onClick={(e) => handleSumbit(e)}
@@ -177,7 +209,7 @@ export default function SignUp() {
                   bg: 200,
                 }}
               >
-                Register
+                Upload
               </Button>
               {/* </form> */}
             </Stack>

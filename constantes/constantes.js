@@ -16,6 +16,6 @@ export const HeaderLinks = [
   },
   {
     label: "Upload Car",
-    href: "#",
+    href: "/uploadCar",
   },
 ];

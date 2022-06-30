@@ -20,6 +20,8 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { FiCamera, FiSave } from "react-icons/fi";
+import { AiFillIdcard } from "react-icons/ai";
+
 import { FaCarSide } from "react-icons/fa";
 
 import {
@@ -30,7 +32,7 @@ import {
 } from "react-icons/fa";
 import { useRef } from "react";
 
-export default function SignUp() {
+export default function SigIn() {
   const refForm = useRef();
 
   const fetchPost = async (user) => {
@@ -39,7 +41,6 @@ export default function SignUp() {
 
     console.log(user);
   };
-
   const handleSumbit = (event) => {
     const { current: form } = refForm;
     // event.preventDefault()
@@ -65,9 +66,9 @@ export default function SignUp() {
       position={"relative"}
       w={"full"}
       backgroundSize={"cover"}
-      backgroundPosition={"25% 50%"}
+      backgroundPosition={"25% 40%"}
       backgroundImage={
-        "url(https://images.unsplash.com/photo-1566816716536-6ab88cbda34e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=826&q=80)"
+        "url(https://images.unsplash.com/photo-1554223090-7e482851df45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=803&q=80)"
       }
     >
       <Container
@@ -83,11 +84,11 @@ export default function SignUp() {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            <Text color={"teal"} as={"span"}>
-              Enjoy
+            <Text color={"#6CC4A1"} as={"span"}>
+              Thank you
             </Text>{" "}
-            <Text color={"gray.600"}>the </Text>
-            <Text color={"#1B2430"}>experience</Text>
+            <Text color={"#73A9AD"}>for choosing </Text>
+            <Text color={"#F5F0BB"}>us</Text>
           </Heading>
 
           <Stack direction={"row"} spacing={4} align={"center"}></Stack>
@@ -105,7 +106,7 @@ export default function SignUp() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Create Account
+              Enter to the web site
             </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
               Thank you for choosing us, you are one step away from being part
@@ -168,7 +169,7 @@ export default function SignUp() {
                 bg={useColorModeValue(100, 200)}
                 color={useColorModeValue("white", "gray")}
                 textTransform={"uppercase"}
-                leftIcon={<FiSave w={5} h={5} />}
+                leftIcon={<AiFillIdcard w={5} h={10} />}
                 _hover={{
                   // transform: "translateY(2px)",
                   // boxShadow: "lg",
@@ -177,7 +178,7 @@ export default function SignUp() {
                   bg: 200,
                 }}
               >
-                Register
+                Sign In
               </Button>
               {/* </form> */}
             </Stack>

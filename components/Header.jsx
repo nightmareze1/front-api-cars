@@ -75,7 +75,7 @@ export default function Header() {
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
-            href={"#"}
+            href={"/signIn"}
           >
             Sign In
           </Button>
