@@ -80,12 +80,13 @@ export default function Header() {
             Sign In
           </Button>
           <Button
+            as={"a"}
             display={{ base: "inline-flex", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
             bg={100}
-            href={"#"}
+            href={"/signUp"}
             _hover={{
               bg: 200,
               transform: "translateY(5px)",
