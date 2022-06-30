@@ -2,6 +2,7 @@ import React from "react";
 import ContainerHF from "../components/ContainerHF";
 import CarCard from "../components/CarCard";
 import { Box } from "@chakra-ui/react";
+import SerachBar from "../components/SerachBar";
 
 export default function cars() {
   return (
@@ -12,7 +13,7 @@ export default function cars() {
         flexFlow={"wrap"}
         p={"3rem"}
       >
-        <CarCard></CarCard>
+        <SerachBar></SerachBar>
         <CarCard></CarCard>
         <CarCard></CarCard>
         <CarCard></CarCard>
