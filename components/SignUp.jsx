@@ -42,7 +42,7 @@ export default function SignUp() {
 
   const handleSumbit = (event) => {
     const { current: form } = refForm;
-    event.preventDefault();
+    // event.preventDefault();
     const formData = new FormData(form);
     const username = formData.get("username");
     const password = formData.get("password");
