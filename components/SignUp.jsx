@@ -64,8 +64,10 @@ export default function SignUp() {
     <Box
       position={"relative"}
       w={"full"}
+      backgroundSize={"cover"}
+      backgroundPosition={"25% 50%"}
       backgroundImage={
-        "url(https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/4GSUPRZXXREO7A3YKFIT3W2RMM.jpg)"
+        "url(https://images.unsplash.com/photo-1587595340454-c1a85f52886d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80)"
       }
     >
       <Container
@@ -81,14 +83,11 @@ export default function SignUp() {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            <Text color={"red.500"} as={"span"}>
-              Thank
+            <Text color={"teal"} as={"span"}>
+              Enjoy
             </Text>{" "}
-            you very much for{" "}
-            <Text color={"blue.500"} as={"span"}>
-              choosing
-            </Text>{" "}
-            us
+            <Text color={"gray.400"}>the </Text>
+            <Text color={100}>experience</Text>
           </Heading>
 
           <Stack direction={"row"} spacing={4} align={"center"}></Stack>
@@ -106,33 +105,12 @@ export default function SignUp() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Upload your product
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                bgClip="text"
-              ></Text>
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                bgClip="text"
-              >
-                "
-              </Text>
-              <Icon as={FaCarSide} />
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                bgClip="text"
-              >
-                "
-              </Text>
+              Create Account
             </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-              You can load cars, motorcycles, boats and agricultural products.
-              The way to upload is very simple, first upload the model, version
-              and price and then upload the image once done by clicking on the
-              button with the save icon
+              Thank you for choosing us, you are one step away from being part
+              of our website. Complete the form so that we can have your data
+              and you can make use of our services
             </Text>
           </Stack>
           <Box as={"form"} mt={10} ref={refForm}>
