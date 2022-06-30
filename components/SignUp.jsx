@@ -29,46 +29,32 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { useRef } from "react";
-import { postAllPhotos } from "../constantes/constantes";
-import { PostCars } from "../constantes/constantes";
 
 export default function SignUp() {
   const refForm = useRef();
 
-  const fetchPost = async (product) => {
+  const fetchPost = async (user) => {
     const { current: form } = refForm;
     const formData = new FormData(form);
-    const url = `http://localhost:3000/${formData.get("products")}`;
-    console.log(url, "esta es la url");
 
-    const productArray = [
-      {
-        ...product,
-        photos: await postAllPhotos(formData),
-      },
-    ];
-
-    PostCars(productArray, url).then((x) => console.log(x));
+    console.log(user);
   };
 
   const handleSumbit = (event) => {
     const { current: form } = refForm;
-    // event.preventDefault();
+    event.preventDefault();
     const formData = new FormData(form);
-    const model = formData.get("model");
-    const version = formData.get("version");
-    const price = formData.get("price");
-    const frase = formData.get("frase");
-    const file = formData.get("file");
+    const username = formData.get("username");
+    const password = formData.get("password");
+    const email = formData.get("email");
 
-    if (formData && model && version && price && frase) {
-      const product = {
-        model,
-        version,
-        price: parseInt(price),
-        frase,
+    if (formData && username && password && email) {
+      const user = {
+        username,
+        email,
+        password,
       };
-      fetchPost(product);
+      fetchPost(user);
     } else {
       alert("faltan datos ");
     }
@@ -152,17 +138,12 @@ export default function SignUp() {
           <Box as={"form"} mt={10} ref={refForm}>
             <Stack spacing={4}>
               {/* <form ref={refForm}> */}
-              <Select name="products" placeholder="Select your product">
-                <option value="cars">Cars</option>
-                <option value="bikes">Bikes</option>
-                <option value="boats">Boats</option>
-                <option value="farms">Farms Products</option>
-              </Select>
-              <FormLabel>Model</FormLabel>
+
+              <FormLabel>Username</FormLabel>
               <Input
                 required
-                placeholder="Model"
-                name="model"
+                placeholder="Username"
+                name="username"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
@@ -170,36 +151,12 @@ export default function SignUp() {
                   color: "gray.500",
                 }}
               />
-              <FormLabel>Version</FormLabel>
+              <FormLabel>Password</FormLabel>
               <Input
                 required
-                placeholder="Version"
-                name="version"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
-              <FormLabel>Description</FormLabel>
-              <Textarea
-                required
-                placeholder="Description"
-                name="frase"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
-              <FormLabel>Price</FormLabel>
-              <Input
-                required
-                name="price"
-                type={"number"}
-                placeholder="Price"
+                type={"password"}
+                placeholder="Password"
+                name="password"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
@@ -208,19 +165,20 @@ export default function SignUp() {
                 }}
               />
 
+              <FormLabel>Email</FormLabel>
               <Input
                 required
-                type={"file"}
-                name="file"
-                placeholder="Upload Img"
+                name="email"
+                type={"email"}
+                placeholder="Email"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
                 _placeholder={{
                   color: "gray.500",
                 }}
-                multiple
               />
+
               <Button
                 // type="submit"
                 onClick={(e) => handleSumbit(e)}
@@ -229,19 +187,19 @@ export default function SignUp() {
                 mt={8}
                 size={"lg"}
                 p={"7"}
-                bg={useColorModeValue(300, 1800)}
+                bg={useColorModeValue(100, 200)}
                 color={useColorModeValue("white", "gray")}
                 textTransform={"uppercase"}
                 leftIcon={<FiSave w={5} h={5} />}
                 _hover={{
                   // transform: "translateY(2px)",
                   // boxShadow: "lg",
-                  transform: "translateY(-10px)",
+                  transform: "translateY(10px)",
 
-                  bg: 1800,
+                  bg: 200,
                 }}
               >
-                Upload
+                Register
               </Button>
               {/* </form> */}
             </Stack>
