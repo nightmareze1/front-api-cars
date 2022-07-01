@@ -55,6 +55,7 @@ export default function SigIn() {
     fetchLoginPagePost(user).then((x) => {
       if (x.token) {
         setModalContent(x.message);
+        sessionStorage.setItem("token", JSON.stringify(x.token));
         push("/");
       } else {
         setModalContent(x.error);
