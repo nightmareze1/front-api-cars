@@ -19,3 +19,17 @@ export const HeaderLinks = [
     href: "/uploadCar",
   },
 ];
+
+//FETCH CREATE USER
+export const fetchRegisterPagePost = async (datos) => {
+  const res = await fetch(`http://localhost:4000/users/createUser`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(datos),
+  });
+  const data = res.json();
+
+  return data;
+};

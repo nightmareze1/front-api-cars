@@ -9,7 +9,6 @@ export default function GlobalContextProvider({ children }) {
 
   //FUNCION PARA BUSCAR CAR OBTENER EL VALOR DE BUSQUEDA
   const searchInput = ({ target }) => {
-    console.log(target.value);
     const { value: mySearch } = target;
     setSearch(mySearch);
   };

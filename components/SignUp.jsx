@@ -18,26 +18,48 @@ import {
   Image,
   Textarea,
   Select,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  ModalOverlay,
 } from "@chakra-ui/react";
 import { FiCamera, FiSave } from "react-icons/fi";
 import { FaCarSide } from "react-icons/fa";
-
 import {
   FaInstagram,
   FaTwitter,
   FaYoutube,
   FaShoppingCart,
 } from "react-icons/fa";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { fetchRegisterPagePost } from "../constantes/constantes.js";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
+  const router = useRouter();
+  const { push } = router;
+  const [modalContent, setModalContent] = useState("");
+
   const refForm = useRef();
 
   const fetchPost = async (user) => {
+    setModalContent("");
     const { current: form } = refForm;
     const formData = new FormData(form);
 
     console.log(user);
+    fetchRegisterPagePost(user).then((x) => {
+      if (x.id) {
+        setModalContent("User created");
+        push("/signIn");
+      } else {
+        setModalContent(JSON.stringify(x.thisUserIsRegistered));
+      }
+    });
   };
 
   const handleSumbit = (event) => {
@@ -70,6 +92,8 @@ export default function SignUp() {
         "url(https://images.unsplash.com/photo-1566816716536-6ab88cbda34e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=826&q=80)"
       }
     >
+      <PopUpModal modalContent={modalContent}></PopUpModal>
+
       <Container
         as={SimpleGrid}
         maxW={"7xl"}
@@ -185,5 +209,44 @@ export default function SignUp() {
         </Stack>
       </Container>
     </Box>
+  );
+}
+function PopUpModal({ modalContent }) {
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
+  );
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = useState(<OverlayOne />);
+  useEffect(() => {
+    if (!modalContent) {
+      onClose();
+    } else {
+      setOverlay(<OverlayOne />);
+      onOpen();
+    }
+
+    return () => {};
+  }, [modalContent]);
+
+  return (
+    <>
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        {overlay}
+        <ModalContent>
+          <ModalHeader>Error</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>{modalContent}</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
