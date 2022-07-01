@@ -29,19 +29,28 @@ import {
   FaYoutube,
   FaShoppingCart,
 } from "react-icons/fa";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { createCarFetch, postAllPhotos } from "../constantes/constantes";
+import { useRouter } from "next/router";
+import PopUpModal from "./PopUpModal";
 
 export default function UploadCar() {
   const refForm = useRef();
+  const router = useRouter();
+  const { push } = router;
+  const [modalContent, setModalContent] = useState("");
 
   const fetchPost = async (car) => {
     const { current: form } = refForm;
     const formData = new FormData(form);
     const namesPhotos = await postAllPhotos(formData);
     const carConImagenes = { ...car, images: namesPhotos };
-    console.log(carConImagenes);
-    createCarFetch(carConImagenes).then((x) => console.log(x));
+    createCarFetch(carConImagenes).then((x) =>
+      setModalContent("Car Created Successfully")
+    );
+    setTimeout(() => {
+      setModalContent("");
+    }, 1000);
   };
 
   const handleSumbit = (event) => {
@@ -52,7 +61,6 @@ export default function UploadCar() {
     const description = formData.get("description");
     const price = formData.get("price");
     const file = formData.get("file");
-    console.log(file);
 
     if (formData && name && description && price) {
       const car = {
@@ -76,6 +84,8 @@ export default function UploadCar() {
         "url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=983&q=80)"
       }
     >
+      <PopUpModal modalContent={modalContent}></PopUpModal>
+
       <Container
         as={SimpleGrid}
         maxW={"7xl"}

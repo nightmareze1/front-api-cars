@@ -105,7 +105,6 @@ export const createCarFetch = async (datos) => {
     body: JSON.stringify(datos),
   });
   const data = res.json();
-  console.log(res);
 
   return data;
 };
