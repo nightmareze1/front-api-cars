@@ -34,7 +34,7 @@ export const fetchRegisterPagePost = async (datos) => {
   return data;
 };
 
-//User Login
+//USER LOGIN
 export const fetchLoginPagePost = async (datos) => {
   const res = await fetch(`http://localhost:4000/users/login`, {
     method: "POST",
@@ -45,5 +45,12 @@ export const fetchLoginPagePost = async (datos) => {
   });
   const data = res.json();
 
+  return data;
+};
+
+//GET ALL CARS
+export const getAllCarsFetch = async () => {
+  const res = await fetch("http://localhost:4000/cars/findAll");
+  const data = await res.json();
   return data;
 };
