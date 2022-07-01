@@ -18,11 +18,22 @@ import {
   Image,
   Textarea,
   Select,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  ModalOverlay,
 } from "@chakra-ui/react";
+import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { fetchLoginPagePost } from "../constantes/constantes.js";
 import { FiCamera, FiSave } from "react-icons/fi";
 import { AiFillIdcard } from "react-icons/ai";
-
 import { FaCarSide } from "react-icons/fa";
+import PopUpModal from "./PopUpModal";
 
 import {
   FaInstagram,
@@ -30,16 +41,25 @@ import {
   FaYoutube,
   FaShoppingCart,
 } from "react-icons/fa";
-import { useRef } from "react";
 
 export default function SigIn() {
   const refForm = useRef();
+  const router = useRouter();
+  const { push } = router;
+  const [modalContent, setModalContent] = useState("");
 
   const fetchPost = async (user) => {
+    setModalContent("");
     const { current: form } = refForm;
     const formData = new FormData(form);
-
-    console.log(user);
+    fetchLoginPagePost(user).then((x) => {
+      if (x.token) {
+        setModalContent(x.message);
+        push("/");
+      } else {
+        setModalContent(x.error);
+      }
+    });
   };
   const handleSumbit = (event) => {
     const { current: form } = refForm;
@@ -57,7 +77,10 @@ export default function SigIn() {
       };
       fetchPost(user);
     } else {
-      alert("faltan datos ");
+      setModalContent("faltan datos ");
+      setTimeout(() => {
+        setModalContent("");
+      }, 1000);
     }
   };
 
@@ -71,6 +94,8 @@ export default function SigIn() {
         "url(https://images.unsplash.com/photo-1554223090-7e482851df45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=803&q=80)"
       }
     >
+      <PopUpModal modalContent={modalContent}></PopUpModal>
+
       <Container
         as={SimpleGrid}
         maxW={"7xl"}

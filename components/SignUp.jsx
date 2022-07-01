@@ -27,6 +27,8 @@ import {
   ModalCloseButton,
   ModalOverlay,
 } from "@chakra-ui/react";
+import { useRef, useState, useEffect } from "react";
+
 import { FiCamera, FiSave } from "react-icons/fi";
 import { FaCarSide } from "react-icons/fa";
 import {
@@ -35,15 +37,13 @@ import {
   FaYoutube,
   FaShoppingCart,
 } from "react-icons/fa";
-import { useRef, useState, useEffect } from "react";
 import { fetchRegisterPagePost } from "../constantes/constantes.js";
-import { useRouter } from "next/router";
+import PopUpModal from "./PopUpModal";
 
 export default function SignUp() {
   const router = useRouter();
   const { push } = router;
   const [modalContent, setModalContent] = useState("");
-
   const refForm = useRef();
 
   const fetchPost = async (user) => {
@@ -51,7 +51,6 @@ export default function SignUp() {
     const { current: form } = refForm;
     const formData = new FormData(form);
 
-    console.log(user);
     fetchRegisterPagePost(user).then((x) => {
       if (x.id) {
         setModalContent("User created");
@@ -78,7 +77,10 @@ export default function SignUp() {
       };
       fetchPost(user);
     } else {
-      alert("faltan datos ");
+      setModalContent("faltan datos ");
+      setTimeout(() => {
+        setModalContent("");
+      }, 1000);
     }
   };
 
@@ -209,44 +211,5 @@ export default function SignUp() {
         </Stack>
       </Container>
     </Box>
-  );
-}
-function PopUpModal({ modalContent }) {
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px) hue-rotate(90deg)"
-    />
-  );
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [overlay, setOverlay] = useState(<OverlayOne />);
-  useEffect(() => {
-    if (!modalContent) {
-      onClose();
-    } else {
-      setOverlay(<OverlayOne />);
-      onOpen();
-    }
-
-    return () => {};
-  }, [modalContent]);
-
-  return (
-    <>
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
-        {overlay}
-        <ModalContent>
-          <ModalHeader>Error</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>{modalContent}</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
   );
 }
