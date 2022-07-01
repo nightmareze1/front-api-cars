@@ -24,9 +24,7 @@ export default function CarCard() {
   return car.map((item, index) => {
     const { _id, name: model, price, description, images } = item;
     if (images) {
-      console.log(images[0].name);
       imagen = images[0].name;
-      console.log(imagen, "lo logro");
     } else {
       return;
     }
