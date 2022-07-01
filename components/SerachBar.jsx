@@ -5,7 +5,8 @@ import GlobalContext from "../context/GlobalContext";
 import { FiSearch } from "react-icons/fi";
 
 export default function SerachBar() {
-  const { searchInput, search, setSearch } = useContext(GlobalContext);
+  const { searchInput, search, setSearch, serarchCars } =
+    useContext(GlobalContext);
   return (
     <>
       {" "}
@@ -36,6 +37,7 @@ export default function SerachBar() {
           fontSize={{ base: "small", md: "large" }}
           bg={100}
           href={"#"}
+          onClick={() => serarchCars(search)}
           _hover={{
             bg: 200,
             transform: "translateY(5px)",

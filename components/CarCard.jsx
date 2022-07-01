@@ -23,7 +23,7 @@ export default function CarCard() {
   return car.map((item, index) => {
     const { _id, name: model, price, description } = item;
     return (
-      <Center key={_id} m={"2rem"} py={12}>
+      <Center key={`${_id}${index}`} m={"2rem"} py={12}>
         <Box
           role={"group"}
           p={6}

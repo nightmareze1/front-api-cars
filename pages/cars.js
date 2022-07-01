@@ -1,12 +1,11 @@
-import React, { useContext, useEffect } from "react";
 import ContainerHF from "../components/ContainerHF";
 import CarCard from "../components/CarCard";
 import { Box } from "@chakra-ui/react";
 import SerachBar from "../components/SerachBar";
+import { React, useState, useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
-
 export default function cars() {
-  const { getAllCars } = useContext(GlobalContext);
+  const { getAllCars, car } = useContext(GlobalContext);
   useEffect(() => {
     getAllCars();
     return () => {};

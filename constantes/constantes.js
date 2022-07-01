@@ -54,3 +54,12 @@ export const getAllCarsFetch = async () => {
   const data = await res.json();
   return data;
 };
+//GET SEARCH CARS
+export const carsSearchFetch = async (search) => {
+  const res = await fetch(
+    `http://localhost:4000/cars/findAll/name?name=${search}  `
+  );
+  const data = await res.json();
+  return data;
+};
+
