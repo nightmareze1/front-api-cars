@@ -39,6 +39,7 @@ import {
 } from "react-icons/fa";
 import { fetchRegisterPagePost } from "../constantes/constantes.js";
 import PopUpModal from "./PopUpModal";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
   const router = useRouter();

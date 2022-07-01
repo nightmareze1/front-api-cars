@@ -30,6 +30,7 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { useRef } from "react";
+import { createCarFetch, postAllPhotos } from "../constantes/constantes";
 
 export default function UploadCar() {
   const refForm = useRef();
@@ -37,7 +38,10 @@ export default function UploadCar() {
   const fetchPost = async (car) => {
     const { current: form } = refForm;
     const formData = new FormData(form);
-    console.log(car);
+    const namesPhotos = await postAllPhotos(formData);
+    const carConImagenes = { ...car, images: namesPhotos };
+    console.log(carConImagenes);
+    createCarFetch(carConImagenes).then((x) => console.log(x));
   };
 
   const handleSumbit = (event) => {

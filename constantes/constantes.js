@@ -82,3 +82,30 @@ export const fetchCarDelete = async (id) => {
     },
   });
 };
+
+//POST ALL PHTOS CARS
+export const postAllPhotos = async (data) => {
+  const res = await fetch("http://localhost:4000/cars/files", {
+    method: "POST",
+    mode: "cors",
+    body: data,
+  });
+  return await res.json();
+};
+
+//FETCH CREATE CAR
+export const createCarFetch = async (datos) => {
+  const res = await fetch(`http://localhost:4000/cars/createCar`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      // token: JSON.parse(await ObtenerTokenLocalStorage())?.token,
+    },
+    body: JSON.stringify(datos),
+  });
+  const data = res.json();
+  console.log(res);
+
+  return data;
+};
