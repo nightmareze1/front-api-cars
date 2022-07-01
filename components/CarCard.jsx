@@ -19,9 +19,18 @@ const IMAGE =
   "https://cdn-1.motorsport.com/images/amp/6n9yKwOY/s1000/ferrari-296-gt3-sketch-1.jpg";
 
 export default function CarCard() {
+  var imagen;
   const { car, setCar, deleteCar, modalContent } = useContext(GlobalContext);
   return car.map((item, index) => {
-    const { _id, name: model, price, description } = item;
+    const { _id, name: model, price, description, images } = item;
+    if (images) {
+      console.log(images[0].name);
+      imagen = images[0].name;
+      console.log(imagen, "lo logro");
+    } else {
+      return;
+    }
+
     return (
       <Center key={`${_id}${index}`} m={"2rem"} py={12}>
         <Box
@@ -62,7 +71,7 @@ export default function CarCard() {
               height={230}
               width={282}
               objectFit={"cover"}
-              src={IMAGE}
+              src={`http://localhost:4000/cars/uploads/${imagen}`}
             />
           </Box>
           <Stack pt={10} align={"center"}>
