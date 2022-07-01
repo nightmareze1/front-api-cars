@@ -19,6 +19,14 @@ export const HeaderLinks = [
     href: "/uploadCar",
   },
 ];
+//OBTIENE EL TOKEN DEL SESSION STORAGE
+export const ObtenerTokenLocalStorage = async () => {
+  var miToken = await sessionStorage.getItem("token");
+
+  if (miToken) {
+    return miToken;
+  }
+};
 
 //FETCH CREATE USER
 export const fetchRegisterPagePost = async (datos) => {
@@ -63,3 +71,14 @@ export const carsSearchFetch = async (search) => {
   return data;
 };
 
+//FETCH DELETE ONE CAR
+export const fetchCarDelete = async (id) => {
+  const res = await fetch(`http://localhost:4000/cars/deleteOneForId/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      // token: JSON.parse(await ObtenerTokenLocalStorage())?.token,
+    },
+  });
+};

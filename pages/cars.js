@@ -4,8 +4,10 @@ import { Box } from "@chakra-ui/react";
 import SerachBar from "../components/SerachBar";
 import { React, useState, useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
+import PopUpModal from "../components/PopUpModal";
+
 export default function cars() {
-  const { getAllCars, car } = useContext(GlobalContext);
+  const { getAllCars, car, modalContent } = useContext(GlobalContext);
   useEffect(() => {
     getAllCars();
     return () => {};
@@ -21,6 +23,7 @@ export default function cars() {
       >
         <SerachBar></SerachBar>
         <CarCard></CarCard>
+        <PopUpModal modalContent={modalContent}></PopUpModal>
       </Box>
     </ContainerHF>
   );

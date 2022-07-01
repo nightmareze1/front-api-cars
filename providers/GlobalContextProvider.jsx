@@ -1,13 +1,29 @@
 import { React, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
-import { getAllCarsFetch, carsSearchFetch } from "../constantes/constantes";
+import {
+  getAllCarsFetch,
+  carsSearchFetch,
+  fetchCarDelete,
+} from "../constantes/constantes";
 
 export default function GlobalContextProvider({ children }) {
   const hola = "hola mundo";
+  //MODAL ESTADO
+  const [modalContent, setModalContent] = useState("");
 
   //ESTADO DE BUSQUEDA
   const [search, setSearch] = useState("");
   const [car, setCar] = useState([{}]);
+
+  //DELETE CAR
+  const deleteCar = (_id) => {
+    fetchCarDelete(_id);
+    getAllCarsFetch().then((x) => setCar(x));
+    setModalContent("Car successfully removed");
+    setTimeout(() => {
+      setModalContent("");
+    }, 1500);
+  };
 
   //GET ALL CARS
   const getAllCars = () => {
@@ -29,6 +45,8 @@ export default function GlobalContextProvider({ children }) {
   return (
     <GlobalContext.Provider
       value={{
+        modalContent,
+        deleteCar,
         hola,
         searchInput,
         search,

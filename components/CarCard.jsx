@@ -13,13 +13,13 @@ import { FiEdit } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
+import { fetchCarDelete } from "../constantes/constantes";
 
 const IMAGE =
   "https://cdn-1.motorsport.com/images/amp/6n9yKwOY/s1000/ferrari-296-gt3-sketch-1.jpg";
 
 export default function CarCard() {
-  const { car, setCar } = useContext(GlobalContext);
-
+  const { car, setCar, deleteCar, modalContent } = useContext(GlobalContext);
   return car.map((item, index) => {
     const { _id, name: model, price, description } = item;
     return (
@@ -99,6 +99,7 @@ export default function CarCard() {
 
             <Stack direction={"row"} align={"center"}>
               <Button
+                onClick={() => deleteCar(_id)}
                 leftIcon={<BsTrashFill w={5} h={5} />}
                 display={{ base: "none", md: "inline-flex" }}
                 fontSize={"sm"}
