@@ -3,14 +3,23 @@ import { React, useContext, useState } from "react";
 import { Box, Text, Input, Button, Stack } from "@chakra-ui/react";
 import GlobalContext from "../context/GlobalContext";
 import { FiSearch } from "react-icons/fi";
+import { Radio, RadioGroup } from "@chakra-ui/react";
 
 export default function SerachBar() {
-  const { searchInput, search, setSearch, serarchCars } =
-    useContext(GlobalContext);
+  const {
+    searchInput,
+    search,
+    setSearch,
+    serarchCars,
+    ratioValue,
+    setRatioValue,
+  } = useContext(GlobalContext);
   return (
     <>
-      {" "}
-      <Text mb="8px">Value: {search}</Text>
+      <RadioInput
+        ratioValue={ratioValue}
+        setRatioValue={setRatioValue}
+      ></RadioInput>
       <Stack
         spacing={2}
         direction="row"
@@ -48,5 +57,19 @@ export default function SerachBar() {
         </Button>
       </Stack>
     </>
+  );
+}
+function RadioInput({ ratioValue, setRatioValue }) {
+  return (
+    <RadioGroup p={"1rem"} onChange={setRatioValue} value={ratioValue}>
+      <Stack direction="row">
+        <Radio colorScheme={"teal"} value="-1">
+          More expensive
+        </Radio>
+        <Radio colorScheme={"teal"} value="1">
+          Cheaper
+        </Radio>
+      </Stack>
+    </RadioGroup>
   );
 }
