@@ -209,14 +209,20 @@ function Carrousel({ car }) {
           {slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
               <Text
+                opacity={0.6}
+                borderRadius={"30px"}
+                mt={"2px"}
+                ml={"2px"}
+                bg="teal"
                 color="white"
-                fontSize="xs"
+                fontSize="large"
                 p="8px 12px"
                 pos="absolute"
                 top="0"
               >
                 {sid + 1} / {slidesCount}
               </Text>
+
               <Image
                 src={slide.img}
                 alt="carousel image"
