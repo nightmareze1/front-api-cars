@@ -229,7 +229,7 @@ function Carrousel({ car }) {
     userSelect: "none",
     _hover: {
       opacity: 0.8,
-      bg: "black",
+      bg: "teal",
     },
   };
 
@@ -279,7 +279,7 @@ function Carrousel({ car }) {
                 src={slide.img}
                 alt="carousel image"
                 boxSize="full"
-                backgroundSize="cover"
+                objectFit="cover"
               />
             </Box>
           ))}
