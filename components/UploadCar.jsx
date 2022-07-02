@@ -45,9 +45,8 @@ export default function UploadCar() {
     const formData = new FormData(form);
     const namesPhotos = await postAllPhotos(formData);
     const carConImagenes = { ...car, images: namesPhotos };
-    createCarFetch(carConImagenes).then((x) =>
-      setModalContent("Car Created Successfully")
-    );
+    createCarFetch(carConImagenes);
+    setModalContent("Car Created Successfully");
     setTimeout(() => {
       setModalContent("");
     }, 1000);

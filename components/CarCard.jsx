@@ -20,7 +20,8 @@ const IMAGE =
 
 export default function CarCard() {
   var imagen;
-  const { car, setCar, deleteCar, modalContent } = useContext(GlobalContext);
+  const { car, setCar, deleteCar, modalContent, individualCar } =
+    useContext(GlobalContext);
   return car.map((item, index) => {
     const { _id, name: model, price, description, images } = item;
     if (images) {
@@ -65,6 +66,8 @@ export default function CarCard() {
             }}
           >
             <Image
+              onClick={() => individualCar(_id)}
+              cursor={"pointer"}
               rounded={"lg"}
               height={230}
               width={282}

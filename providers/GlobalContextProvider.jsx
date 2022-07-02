@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
+import { useRouter } from "next/router";
 import {
   getAllCarsFetch,
   carsSearchFetch,
@@ -7,6 +8,8 @@ import {
 } from "../constantes/constantes";
 
 export default function GlobalContextProvider({ children }) {
+  //OBTENGO LA RUTA
+  const router = useRouter();
   const hola = "hola mundo";
   //MODAL ESTADO
   const [modalContent, setModalContent] = useState("");
@@ -45,9 +48,17 @@ export default function GlobalContextProvider({ children }) {
     }
   };
 
+  //Obtengo el id de la imagen para ir ha IndividualCar
+  const individualCar = (id) => {
+    const { push } = router;
+    push(`individualCar/${id}`);
+    console.log(id);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
+        individualCar,
         ratioValue,
         setRatioValue,
         modalContent,
