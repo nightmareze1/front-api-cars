@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { Text } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 
-export default function IndividualCar({ results }) {
+export default function IndividualCar({ car }) {
   const router = useRouter();
-  console.log(results);
+  console.log(car);
   console.log(router.query);
 
   const { id } = router.query;
@@ -24,5 +24,5 @@ export const getServerSideProps = async (context) => {
   const resJson = await res.json();
   const datos = resJson;
 
-  return { props: { results: datos } };
+  return { props: { car: datos } };
 };
