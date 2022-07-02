@@ -20,13 +20,14 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import { MdLocalShipping } from "react-icons/md";
+import { FaMoneyBillWaveAlt } from "react-icons/fa";
 import cars from "../cars";
+import { FiSave } from "react-icons/fi";
 
 export default function IndividualCar({ car }) {
   const router = useRouter();
-  console.log(car);
-  console.log(router.query);
+  //console.log(car);
+  //console.log(router.query);
 
   const { id } = router.query;
 
@@ -121,86 +122,27 @@ function CarDetail({ car }) {
                 </Heading>
               </Box>
             </Box>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Product Details
-              </Text>
-
-              <List spacing={2}>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Between lugs:
-                  </Text>{" "}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Bracelet:
-                  </Text>{" "}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case:
-                  </Text>{" "}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case diameter:
-                  </Text>{" "}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Dial color:
-                  </Text>{" "}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Crystal:
-                  </Text>{" "}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Water resistance:
-                  </Text>{" "}
-                  5 bar (50 metres / 167 feet){" "}
-                </ListItem>
-              </List>
-            </Box>
           </Stack>
 
           <Button
+            // type="submit"
             rounded={"none"}
             w={"full"}
             mt={8}
             size={"lg"}
-            py={"7"}
-            bg={useColorModeValue("gray.900", "gray.50")}
-            color={useColorModeValue("white", "gray.900")}
+            p={"7"}
+            bg={useColorModeValue(100, 200)}
+            color={useColorModeValue("white", "gray")}
             textTransform={"uppercase"}
+            leftIcon={<FaMoneyBillWaveAlt w={5} h={5} />}
             _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
+              transform: "translateY(10px)",
+
+              bg: 200,
             }}
           >
-            Add to cart
+            BUY
           </Button>
-
-          <Stack direction="row" alignItems="center" justifyContent={"center"}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
-          </Stack>
         </Stack>
       </SimpleGrid>
     </Container>
@@ -212,7 +154,7 @@ function Carrousel({ car }) {
   const arrImages = images?.map((item) => {
     return { img: `http://localhost:4000/cars/uploads/${item.name}` };
   });
-  console.log(arrImages);
+  //console.log(arrImages);
 
   const arrowStyles = {
     cursor: "pointer",
