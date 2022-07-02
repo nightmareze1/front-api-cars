@@ -54,19 +54,8 @@ function CarDetail({ car }) {
       >
         <Flex>
           <Box w={"100%"} h={{ base: "100%", sm: "400px", lg: "500px" }}>
-            <Carrousel></Carrousel>
+            <Carrousel car={car}></Carrousel>
           </Box>
-          {/* <Image
-            rounded={"md"}
-            alt={"product image"}
-            src={
-              "https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080"
-            }
-            fit={"cover"}
-            align={"center"}
-            w={"100%"}
-            h={{ base: "100%", sm: "400px", lg: "500px" }}
-          /> */}
         </Flex>
         <Stack spacing={{ base: 6, md: 10 }}>
           <Box display={"flex"} justifyContent={"center"} as={"header"}>
@@ -218,7 +207,13 @@ function CarDetail({ car }) {
   );
 }
 
-function Carrousel() {
+function Carrousel({ car }) {
+  const { images } = car;
+  const arrImages = images?.map((item) => {
+    return { img: `http://localhost:4000/cars/uploads/${item.name}` };
+  });
+  console.log(arrImages);
+
   const arrowStyles = {
     cursor: "pointer",
     pos: "absolute",
@@ -238,23 +233,7 @@ function Carrousel() {
     },
   };
 
-  const slides = [
-    {
-      img: "https://images.pexels.com/photos/2599537/pexels-photo-2599537.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/2714581/pexels-photo-2714581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/2878019/pexels-photo-2878019.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-    },
-    {
-      img: "https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-  ];
+  const slides = arrImages;
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
