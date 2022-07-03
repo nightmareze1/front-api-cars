@@ -23,6 +23,7 @@ import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FaMoneyBillWaveAlt } from "react-icons/fa";
 import cars from "../cars";
 import { FiSave } from "react-icons/fi";
+import ContainerHF from "../../components/ContainerHF";
 
 export default function IndividualCar({ car }) {
   const router = useRouter();
@@ -30,8 +31,11 @@ export default function IndividualCar({ car }) {
   //console.log(router.query);
 
   const { id } = router.query;
-
-  return <Box>{<CarDetail car={car}></CarDetail>}</Box>;
+  return (
+    <ContainerHF>
+      <Box>{<CarDetail car={car}></CarDetail>}</Box>;
+    </ContainerHF>
+  );
 }
 
 export const getServerSideProps = async (context) => {

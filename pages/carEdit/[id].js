@@ -30,9 +30,14 @@ import { BsTrashFill } from "react-icons/bs";
 import cars from "../cars";
 import { FiSave } from "react-icons/fi";
 import { AiOutlineConsoleSql } from "react-icons/ai";
-import { oneCarForId, UpdateCarFetch } from "../../constantes/constantes";
+import {
+  oneCarForId,
+  postAllPhotos,
+  UpdateCarFetch,
+} from "../../constantes/constantes";
 import GlobalContext from "../../context/GlobalContext";
 import PopUpModal from "../../components/PopUpModal";
+import ContainerHF from "../../components/ContainerHF";
 
 export default function IndividualCar({ car }) {
   const [updateCar, setUpdateCar] = useState(car);
@@ -43,9 +48,11 @@ export default function IndividualCar({ car }) {
   const { id } = router.query;
 
   return (
-    <Box>
-      {<CarDetail car={updateCar} setUpdateCar={setUpdateCar}></CarDetail>}
-    </Box>
+    <ContainerHF>
+      <Box>
+        {<CarDetail car={updateCar} setUpdateCar={setUpdateCar}></CarDetail>}
+      </Box>
+    </ContainerHF>
   );
 }
 
@@ -160,7 +167,7 @@ function CarDetail({ car, setUpdateCar }) {
             EDIT
           </Button>
         </Stack> */}
-        <UpdateCar></UpdateCar>
+        <UpdateCar car={car} setUpdateCar={setUpdateCar}></UpdateCar>
       </SimpleGrid>
     </Container>
   );
@@ -311,19 +318,22 @@ function Carrousel({ car, setUpdateCar }) {
   );
 }
 
-function UpdateCar() {
+function UpdateCar({ car, setUpdateCar }) {
+  const { _id } = car;
   const refForm = useRef();
   const router = useRouter();
   const { push } = router;
   const { modalContent, setModalContent } = useContext(GlobalContext);
 
-  const fetchPost = async (car) => {
+  const fetchPost = async (car, _id) => {
     const { current: form } = refForm;
     const formData = new FormData(form);
     const namesPhotos = await postAllPhotos(formData);
+    console.log(namesPhotos, "nombre de las fotos ");
+
     const carConImagenes = { ...car, images: namesPhotos };
-    createCarFetch(carConImagenes);
-    setModalContent("Car Update Successfully");
+    UpdateCarFetch(carConImagenes, _id);
+    setModalContent("Car Updated Successfully");
     setTimeout(() => {
       setModalContent("");
     }, 1000);
@@ -339,12 +349,12 @@ function UpdateCar() {
     const file = formData.get("file");
 
     if (formData && name && description && price) {
-      const car = {
+      const carUpdateForm = {
         name,
         description,
         price: parseInt(price),
       };
-      fetchPost(car);
+      fetchPost(carUpdateForm, _id);
     } else {
       setModalContent("Faltan datos por completar");
       setTimeout(() => {

@@ -114,7 +114,7 @@ export const createCarFetch = async (datos) => {
 
   return data;
 };
-
+//UPDATE CAR
 export const UpdateCarFetch = async (datos, id) => {
   const res = await fetch(`http://localhost:4000/cars/updateOneForId/${id}`, {
     method: "PUT",
