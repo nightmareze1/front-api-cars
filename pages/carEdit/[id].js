@@ -316,7 +316,7 @@ function UpdateCar() {
   const refForm = useRef();
   const router = useRouter();
   const { push } = router;
-  const [modalContent, setModalContent] = useState("");
+  const { modalContent, setModalContent } = useContext(GlobalContext);
 
   const fetchPost = async (car) => {
     const { current: form } = refForm;
@@ -347,51 +347,38 @@ function UpdateCar() {
       };
       fetchPost(car);
     } else {
-      alert("faltan datos ");
+      setModalContent("Faltan datos por completar");
+      setTimeout(() => {
+        setModalContent("");
+      }, 1000);
     }
   };
 
   return (
     <Box
+      mt={"2rem"}
       position={"relative"}
       w={"full"}
-      backgroundSize={"cover"}
       backgroundPosition={"25% 50%"}
-      backgroundImage={
-        "url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=983&q=80)"
-      }
     >
       <PopUpModal modalContent={modalContent}></PopUpModal>
 
       <Container
         as={SimpleGrid}
         maxW={"7xl"}
-        columns={{ base: 1, md: 2 }}
-        spacing={{ base: 10, lg: 32 }}
-        py={{ base: 10, sm: 20, lg: 32 }}
+        columns={{ base: 1, md: 1 }}
+        spacing={{ base: 2, lg: 2 }}
+        py={{ base: 1, sm: 1, lg: 1 }}
       >
-        <Stack spacing={{ base: 10, md: 20 }}>
-          <Heading
-            color={1900}
-            lineHeight={1.1}
-            fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
-          >
-            <Text color={200} as={"span"}>
-              Welcome
-            </Text>{" "}
-            <Text color={300} as={"span"}>
-              to the
-            </Text>{" "}
-            <Text color={500}> upload section</Text>
-          </Heading>
-
+        <Stack spacing={{ base: 1, md: 1 }}>
           <Stack direction={"row"} spacing={4} align={"center"}></Stack>
         </Stack>
         <Stack
           bg={"gray.50"}
+          boxShadow={"dark-lg"}
           rounded={"xl"}
-          p={{ base: 4, sm: 6, md: 8 }}
-          spacing={{ base: 8 }}
+          p={{ base: 2, sm: 3, md: 4 }}
+          spacing={{ base: 4 }}
           maxW={{ lg: "lg" }}
         >
           <Stack spacing={4}>
@@ -400,22 +387,7 @@ function UpdateCar() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Upload your Car
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, black ,white)"
-                bgClip="text"
-              >
-                --
-              </Text>
-              <Icon as={AiFillCar} />
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, white ,black)"
-                bgClip="text"
-              >
-                --
-              </Text>
+              Edit your car specifications
             </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
               Welcome to the car loading section, do not hesitate to load the
@@ -500,7 +472,7 @@ function UpdateCar() {
                   bg: 200,
                 }}
               >
-                Upload
+                Update Car
               </Button>
               {/* </form> */}
             </Stack>
