@@ -7,24 +7,24 @@ import GlobalContext from "../context/GlobalContext";
 import PopUpModal from "../components/PopUpModal";
 
 export default function cars() {
-  const { getAllCars, car, modalContent } = useContext(GlobalContext);
-  useEffect(() => {
-    getAllCars();
-    return () => {};
-  }, []);
+	const { getAllCars, car, modalContent } = useContext(GlobalContext);
+	useEffect(() => {
+		getAllCars();
+		return () => {};
+	}, []);
 
-  return (
-    <ContainerHF>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        flexFlow={"wrap"}
-        p={"3rem"}
-      >
-        <SerachBar></SerachBar>
-        <CarCard></CarCard>
-        <PopUpModal modalContent={modalContent}></PopUpModal>
-      </Box>
-    </ContainerHF>
-  );
+	return (
+		<ContainerHF>
+			<Box
+				display={"flex"}
+				justifyContent={"center"}
+				flexFlow={"wrap"}
+				p={"3rem"}
+			>
+				<SerachBar></SerachBar>
+				<CarCard></CarCard>
+				<PopUpModal modalContent={modalContent}></PopUpModal>
+			</Box>
+		</ContainerHF>
+	);
 }
