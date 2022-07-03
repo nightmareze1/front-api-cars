@@ -55,7 +55,7 @@ export default function IndividualCar({ car }) {
     </ContainerHF>
   );
 }
-
+//OBTENGO EL AUTO CON EL ID ESPESIFICO
 export const getServerSideProps = async (context) => {
   const res = await fetch(
     `http://localhost:4000/cars/findOneForId/${context.query.id}`
@@ -65,6 +65,8 @@ export const getServerSideProps = async (context) => {
 
   return { props: { car: datos } };
 };
+
+//ESTE COMPONENTE CONTIENE AL CARROUSEL Y EL FORM QUE SIRVE PARA EDITAR
 function CarDetail({ car, setUpdateCar }) {
   const { name: model, description, price } = car;
   return (
@@ -86,6 +88,7 @@ function CarDetail({ car, setUpdateCar }) {
   );
 }
 
+//ESTE CARROUSEL CONTIENE UN BOTON PARA BORRAR LA IMAGEN QUE SE DESEA
 function Carrousel({ car, setUpdateCar }) {
   const { setModalContent, modalContent } = useContext(GlobalContext);
   const { images, price, description, model, _id } = car;
@@ -235,6 +238,7 @@ function Carrousel({ car, setUpdateCar }) {
   );
 }
 
+//EN ESTE FORM SE PUEDEN EDITAR TODOS LOS DATOS TANTO LAS IMAGENES COMO EL TEXTO
 function UpdateCar({ car, setUpdateCar }) {
   const { _id, name: model, description, price } = car;
   const refForm = useRef();
