@@ -51,6 +51,7 @@ export const getServerSideProps = async (context) => {
 
   return { props: { car: datos } };
 };
+
 function CarDetail({ car, setUpdateCar }) {
   const { name: model, description, price } = car;
   return (
