@@ -228,6 +228,8 @@ function Carrousel({ car }) {
                 alt="carousel image"
                 boxSize="full"
                 objectFit="cover"
+                // transition="all 5s"
+                // filter={currentSlide === sid ? "blur(0)" : "grayscale(100%)"}
               />
             </Box>
           ))}
