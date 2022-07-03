@@ -54,10 +54,17 @@ export default function GlobalContextProvider({ children }) {
     push(`individualCar/${id}`);
     console.log(id);
   };
+  //Obtengo el id de la imagen para ir ha IndividualCar
+  const carEdit = (id) => {
+    const { push } = router;
+    push(`carEdit/${id}`);
+    console.log(id);
+  };
 
   return (
     <GlobalContext.Provider
       value={{
+        carEdit,
         individualCar,
         ratioValue,
         setRatioValue,
