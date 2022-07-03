@@ -270,7 +270,6 @@ function UpdateCar({ car, setUpdateCar }) {
 
 	const handleSumbit = (car) => {
 		const { current: form } = refForm;
-		// event.preventDefault()
 		const formData = new FormData(form);
 		const name = formData.get("name");
 		const description = formData.get("description");
