@@ -72,7 +72,7 @@ export const carsSearchFetch = async (search, order) => {
 };
 //ONE CAR FOR ID
 export const oneCarForId = async (id) => {
-  const res = await fetch(`http://localhost:4000/cars/findOneForId/${id} `);
+  const res = await fetch(`http://localhost:4000/cars/findOneForId/${id}`);
   const data = await res.json();
   return data;
 };

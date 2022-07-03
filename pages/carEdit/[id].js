@@ -80,93 +80,7 @@ function CarDetail({ car, setUpdateCar }) {
             <Carrousel car={car} setUpdateCar={setUpdateCar}></Carrousel>
           </Box>
         </Flex>
-        {/* <Stack spacing={{ base: 6, md: 10 }}>
-          <Box display={"flex"} justifyContent={"center"} as={"header"}>
-            <Heading
-              mt={"5rem"}
-              lineHeight={1.1}
-              textTransform={"capitalize"}
-              fontWeight={600}
-              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
-            >
-              {model}
-            </Heading>
-            <StackDivider
-              borderColor={useColorModeValue("gray.200", "gray.600")}
-            />
-          </Box>
 
-          <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={"column"}
-            divider={
-              <StackDivider
-                borderColor={useColorModeValue("gray.200", "gray.600")}
-              />
-            }
-          >
-            <VStack spacing={{ base: 4, sm: 6 }}>
-              <Heading
-                textTransform={"uppercase"}
-                color={useColorModeValue("teal", "gray.400")}
-                fontSize={"2xl"}
-                fontWeight={"500"}
-              >
-                car information
-              </Heading>
-              <Text
-                color={useColorModeValue("gray.500", "gray.400")}
-                fontSize={"lg"}
-              >
-                {description}
-              </Text>
-            </VStack>
-            <Box>
-              <Box display="flex" justifyContent={"center"}>
-                <Heading
-                  textTransform={"uppercase"}
-                  color={useColorModeValue("teal", "gray.400")}
-                  fontSize={"2xl"}
-                  fontWeight={"500"}
-                >
-                  Price
-                </Heading>
-              </Box>
-
-              <Box display="flex" justifyContent={"center"}>
-                <Heading
-                  mt={"1rem"}
-                  textTransform={"uppercase"}
-                  color={useColorModeValue("gray.500", "gray.400")}
-                  fontSize={"2xl"}
-                  fontWeight={"500"}
-                >
-                  {`$${price}`}
-                </Heading>
-              </Box>
-            </Box>
-          </Stack>
-
-          <Button
-            // type="submit"
-            rounded={"none"}
-            w={"full"}
-            mt={8}
-            size={"lg"}
-            p={"7"}
-            bg={useColorModeValue(100, 200)}
-            color={useColorModeValue("white", "gray")}
-            textTransform={"uppercase"}
-            leftIcon={<FiEdit w={5} h={5} />}
-            _hover={{
-              transform: "translateY(10px)",
-
-              bg: 200,
-            }}
-          >
-            EDIT
-          </Button>
-        </Stack> */}
         <UpdateCar car={car} setUpdateCar={setUpdateCar}></UpdateCar>
       </SimpleGrid>
     </Container>
@@ -178,10 +92,14 @@ function Carrousel({ car, setUpdateCar }) {
   const { images, price, description, model, _id } = car;
 
   //DELETE IMG
-  const deleteImage = (indexImage) => {
-    const imagesDelete = images.filter((item, index) => index != indexImage);
+  const deleteImage = (imagenId) => {
+    console.log(images);
+    const imagesDelete = images?.filter((item) => item._id !== imagenId);
+    console.log(imagesDelete);
+    console.log(_id);
     const carUpdate = { model, price, description, images: imagesDelete };
-    UpdateCarFetch(carUpdate, _id).then((x) => console.log(x, "Updated"));
+
+    UpdateCarFetch(carUpdate, _id);
     oneCarForId(_id).then((x) => setUpdateCar(x));
     setModalContent("Photo Delete");
     setTimeout(() => {
@@ -260,7 +178,7 @@ function Carrousel({ car, setUpdateCar }) {
                 {sid + 1} / {slidesCount}
               </Text>
               <Button
-                onClick={() => deleteImage(sid)}
+                onClick={() => deleteImage(images[sid - 1]._id)}
                 opacity={0.6}
                 borderRadius={"30px"}
                 mt={"2px"}
@@ -319,27 +237,29 @@ function Carrousel({ car, setUpdateCar }) {
 }
 
 function UpdateCar({ car, setUpdateCar }) {
-  const { _id } = car;
+  const { _id, name: model, description, price } = car;
   const refForm = useRef();
   const router = useRouter();
   const { push } = router;
   const { modalContent, setModalContent } = useContext(GlobalContext);
 
-  const fetchPost = async (car, _id) => {
+  const fetchPost = async (car, _id, preveousCar) => {
     const { current: form } = refForm;
     const formData = new FormData(form);
+    const file = formData.get("file");
     const namesPhotos = await postAllPhotos(formData);
-    console.log(namesPhotos, "nombre de las fotos ");
-
     const carConImagenes = { ...car, images: namesPhotos };
+    console.log(namesPhotos);
     UpdateCarFetch(carConImagenes, _id);
     setModalContent("Car Updated Successfully");
+    oneCarForId(_id).then((x) => setUpdateCar(x));
+
     setTimeout(() => {
       setModalContent("");
     }, 1000);
   };
 
-  const handleSumbit = (event) => {
+  const handleSumbit = (car) => {
     const { current: form } = refForm;
     // event.preventDefault()
     const formData = new FormData(form);
@@ -354,9 +274,9 @@ function UpdateCar({ car, setUpdateCar }) {
         description,
         price: parseInt(price),
       };
-      fetchPost(carUpdateForm, _id);
+      fetchPost(carUpdateForm, _id, car);
     } else {
-      setModalContent("Faltan datos por completar");
+      setModalContent("Missing data to complete");
       setTimeout(() => {
         setModalContent("");
       }, 1000);
@@ -411,6 +331,7 @@ function UpdateCar({ car, setUpdateCar }) {
               <Input
                 required
                 placeholder="Model"
+                defaultValue={model}
                 name="name"
                 bg={"gray.100"}
                 border={0}
@@ -422,6 +343,7 @@ function UpdateCar({ car, setUpdateCar }) {
 
               <FormLabel>Description</FormLabel>
               <Textarea
+                defaultValue={description}
                 required
                 placeholder="Description"
                 name="description"
@@ -435,6 +357,7 @@ function UpdateCar({ car, setUpdateCar }) {
               <FormLabel>Price</FormLabel>
               <Input
                 required
+                defaultValue={price}
                 name="price"
                 type={"number"}
                 placeholder="Price"
@@ -461,7 +384,7 @@ function UpdateCar({ car, setUpdateCar }) {
               />
               <Button
                 // type="submit"
-                onClick={(e) => handleSumbit(e)}
+                onClick={() => handleSumbit(car)}
                 rounded={"none"}
                 w={"full"}
                 mt={8}
