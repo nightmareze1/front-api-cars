@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { AiFillCar } from "react-icons/ai";
-
 import {
   Textarea,
   Input,
@@ -324,7 +323,7 @@ function UpdateCar() {
     const namesPhotos = await postAllPhotos(formData);
     const carConImagenes = { ...car, images: namesPhotos };
     createCarFetch(carConImagenes);
-    setModalContent("Car Created Successfully");
+    setModalContent("Car Update Successfully");
     setTimeout(() => {
       setModalContent("");
     }, 1000);
@@ -390,10 +389,8 @@ function UpdateCar() {
               Edit your car specifications
             </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-              Welcome to the car loading section, do not hesitate to load the
-              car you want in our database. We offer you advice and commitment
-              when putting you in contact with the client so that you can make a
-              safe sale
+              Welcome to the car editing section, In this section you can edit
+              delete and add more images
             </Text>
           </Stack>
           <Box as={"form"} mt={10} ref={refForm}>
