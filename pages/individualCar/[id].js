@@ -191,7 +191,7 @@ function Carrousel({ car }) {
     setCurrentSlide(slide);
   };
   const carouselStyle = {
-    transition: "all .5s",
+    transition: "all 3s",
     ml: `-${currentSlide * 100}%`,
   };
 
@@ -239,7 +239,7 @@ function Carrousel({ car }) {
           &#10095;
         </Text>
         <HStack justify="center" pos="absolute" bottom="8px" w="full">
-          {Array.from({ length: slidesCount }).map((_, slide) => (
+          {slides.map((_, slide) => (
             <Box
               key={`dots-${slide}`}
               cursor="pointer"
