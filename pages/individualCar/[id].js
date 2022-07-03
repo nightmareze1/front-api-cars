@@ -43,7 +43,6 @@ export const getServerSideProps = async (context) => {
 
   return { props: { car: datos } };
 };
-
 function CarDetail({ car }) {
   const { name: model, description, price } = car;
   return (
@@ -61,6 +60,7 @@ function CarDetail({ car }) {
         <Stack spacing={{ base: 6, md: 10 }}>
           <Box display={"flex"} justifyContent={"center"} as={"header"}>
             <Heading
+              mt={"5rem"}
               lineHeight={1.1}
               textTransform={"capitalize"}
               fontWeight={600}
