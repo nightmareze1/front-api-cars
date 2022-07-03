@@ -24,6 +24,7 @@ import { FiEdit } from "react-icons/fi";
 import { BsTrashFill } from "react-icons/bs";
 import cars from "../cars";
 import { FiSave } from "react-icons/fi";
+import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export default function IndividualCar({ car }) {
   const router = useRouter();
@@ -151,7 +152,18 @@ function CarDetail({ car }) {
 }
 
 function Carrousel({ car }) {
-  const { images } = car;
+  const deleteImage = (indexImage) => {
+    console.log(indexImage, "index Image");
+    console.log(images, "Array images");
+
+    const imagesDelete = images.filter((item, index) => {
+      if (index != indexImage) {
+        return item;
+      }
+    });
+    console.log(imagesDelete, "images delete");
+  };
+  const { images, _id: idImage } = car;
   const arrImages = images?.map((item) => {
     return { img: `http://localhost:4000/cars/uploads/${item.name}` };
   });
@@ -224,6 +236,7 @@ function Carrousel({ car }) {
                 {sid + 1} / {slidesCount}
               </Text>
               <Button
+                onClick={() => deleteImage(sid)}
                 opacity={0.6}
                 borderRadius={"30px"}
                 mt={"2px"}

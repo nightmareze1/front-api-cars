@@ -108,3 +108,18 @@ export const createCarFetch = async (datos) => {
 
   return data;
 };
+
+export const UpdateCarFetch = async (datos, id) => {
+  const res = await fetch(`http://localhost:4000/cars/updateOneForId/${id}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      // token: JSON.parse(await ObtenerTokenLocalStorage())?.token,
+    },
+    body: JSON.stringify(datos),
+  });
+  const data = res.json();
+
+  return data;
+};
