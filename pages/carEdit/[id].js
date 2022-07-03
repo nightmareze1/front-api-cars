@@ -165,6 +165,28 @@ function Carrousel({ car, setUpdateCar }) {
 				<Flex h="400px" w="full" {...carouselStyle}>
 					{slides.map((slide, sid) => (
 						<Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
+							<Button
+								onClick={() => deleteImage(images[sid - 1]._id)}
+								opacity={0.4}
+								borderRadius={"30px"}
+								mt={"2px"}
+								ml={"2px"}
+								bg="teal"
+								color="white"
+								fontSize="large"
+								p="8px 12px"
+								pos="absolute"
+								right="70"
+								top="0"
+								leftIcon={<BsTrashFill w={5} h={5} />}
+								_hover={{
+									bg: 300,
+									transform: "translateY(1px)",
+									transition: " all 0.2s ease-out",
+								}}
+							>
+								Delete
+							</Button>
 							<Text
 								opacity={0.6}
 								borderRadius={"30px"}
@@ -179,27 +201,7 @@ function Carrousel({ car, setUpdateCar }) {
 							>
 								{sid + 1} / {slidesCount}
 							</Text>
-							<Button
-								onClick={() => deleteImage(images[sid - 1]._id)}
-								opacity={0.6}
-								borderRadius={"30px"}
-								mt={"2px"}
-								ml={"-50%"}
-								bg="teal"
-								color="white"
-								fontSize="large"
-								p="8px 12px"
-								pos="absolute"
-								top="0"
-								leftIcon={<BsTrashFill w={5} h={5} />}
-								_hover={{
-									bg: 200,
-									transform: "translateY(5px)",
-									transition: " all 1s ease-out",
-								}}
-							>
-								Delete
-							</Button>
+
 							<Image
 								src={slide.img}
 								alt="carousel image"
