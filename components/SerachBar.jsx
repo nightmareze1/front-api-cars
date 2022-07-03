@@ -60,13 +60,22 @@ export default function SerachBar() {
   );
 }
 function RadioInput({ ratioValue, setRatioValue }) {
+  const { RatioChangeOnClick } = useContext(GlobalContext);
   return (
     <RadioGroup p={"1rem"} onChange={setRatioValue} value={ratioValue}>
       <Stack direction="row">
-        <Radio colorScheme={"teal"} value="-1">
+        <Radio
+          onClick={() => RatioChangeOnClick()}
+          colorScheme={"teal"}
+          value="-1"
+        >
           More expensive
         </Radio>
-        <Radio colorScheme={"teal"} value="1">
+        <Radio
+          onClick={() => RatioChangeOnClick()}
+          colorScheme={"teal"}
+          value="1"
+        >
           Cheaper
         </Radio>
       </Stack>

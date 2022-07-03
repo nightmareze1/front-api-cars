@@ -20,7 +20,10 @@ export default function GlobalContextProvider({ children }) {
   //ESTADO DE BUSQUEDA
   const [search, setSearch] = useState("");
   const [car, setCar] = useState([{}]);
-
+  //Activo el ratio a todos los cars
+  const RatioChangeOnClick = () => {
+    getAllCarsFetch(ratioValue).then((x) => setCar(x));
+  };
   //DELETE CAR
   const deleteCar = (_id) => {
     fetchCarDelete(_id);
@@ -64,6 +67,7 @@ export default function GlobalContextProvider({ children }) {
   return (
     <GlobalContext.Provider
       value={{
+        RatioChangeOnClick,
         carEdit,
         individualCar,
         ratioValue,
