@@ -25,15 +25,21 @@ import { BsTrashFill } from "react-icons/bs";
 import cars from "../cars";
 import { FiSave } from "react-icons/fi";
 import { AiOutlineConsoleSql } from "react-icons/ai";
+import { oneCarForId, UpdateCarFetch } from "../../constantes/constantes";
 
 export default function IndividualCar({ car }) {
+  const [updateCar, setUpdateCar] = useState(car);
   const router = useRouter();
   //console.log(car);
   //console.log(router.query);
 
   const { id } = router.query;
 
-  return <Box>{<CarDetail car={car}></CarDetail>}</Box>;
+  return (
+    <Box>
+      {<CarDetail car={updateCar} setUpdateCar={setUpdateCar}></CarDetail>}
+    </Box>
+  );
 }
 
 export const getServerSideProps = async (context) => {
@@ -45,7 +51,7 @@ export const getServerSideProps = async (context) => {
 
   return { props: { car: datos } };
 };
-function CarDetail({ car }) {
+function CarDetail({ car, setUpdateCar }) {
   const { name: model, description, price } = car;
   return (
     <Container maxW={"7xl"}>
@@ -56,7 +62,7 @@ function CarDetail({ car }) {
       >
         <Flex>
           <Box w={"100%"} h={{ base: "100%", sm: "400px", lg: "500px" }}>
-            <Carrousel car={car}></Carrousel>
+            <Carrousel car={car} setUpdateCar={setUpdateCar}></Carrousel>
           </Box>
         </Flex>
         <Stack spacing={{ base: 6, md: 10 }}>
@@ -151,24 +157,19 @@ function CarDetail({ car }) {
   );
 }
 
-function Carrousel({ car }) {
+function Carrousel({ car, setUpdateCar }) {
+  const { images, price, description, model, _id } = car;
+  //DELETE IMG
   const deleteImage = (indexImage) => {
-    console.log(indexImage, "index Image");
-    console.log(images, "Array images");
-
-    const imagesDelete = images.filter((item, index) => {
-      if (index != indexImage) {
-        return item;
-      }
-    });
-    console.log(imagesDelete, "images delete");
+    const imagesDelete = images.filter((item, index) => index != indexImage);
+    const carUpdate = { model, price, description, images: imagesDelete };
+    UpdateCarFetch(carUpdate, _id).then((x) => console.log(x, "Updated"));
+    oneCarForId(_id).then((x) => setUpdateCar(x));
   };
-  const { images, _id: idImage } = car;
+
   const arrImages = images?.map((item) => {
     return { img: `http://localhost:4000/cars/uploads/${item.name}` };
   });
-  //console.log(arrImages);
-
   const arrowStyles = {
     cursor: "pointer",
     pos: "absolute",

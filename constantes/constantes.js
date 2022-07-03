@@ -70,6 +70,12 @@ export const carsSearchFetch = async (search, order) => {
   const data = await res.json();
   return data;
 };
+//ONE CAR FOR ID
+export const oneCarForId = async (id) => {
+  const res = await fetch(`http://localhost:4000/cars/findOneForId/${id} `);
+  const data = await res.json();
+  return data;
+};
 
 //FETCH DELETE ONE CAR
 export const fetchCarDelete = async (id) => {
@@ -111,7 +117,7 @@ export const createCarFetch = async (datos) => {
 
 export const UpdateCarFetch = async (datos, id) => {
   const res = await fetch(`http://localhost:4000/cars/updateOneForId/${id}`, {
-    method: "POST",
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
