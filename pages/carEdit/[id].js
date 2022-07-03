@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
+import { AiFillCar } from "react-icons/ai";
+
 import {
+  Textarea,
+  Input,
+  FormLabel,
+  Icon,
   Box,
   chakra,
   Container,
@@ -26,6 +32,8 @@ import cars from "../cars";
 import { FiSave } from "react-icons/fi";
 import { AiOutlineConsoleSql } from "react-icons/ai";
 import { oneCarForId, UpdateCarFetch } from "../../constantes/constantes";
+import GlobalContext from "../../context/GlobalContext";
+import PopUpModal from "../../components/PopUpModal";
 
 export default function IndividualCar({ car }) {
   const [updateCar, setUpdateCar] = useState(car);
@@ -66,7 +74,7 @@ function CarDetail({ car, setUpdateCar }) {
             <Carrousel car={car} setUpdateCar={setUpdateCar}></Carrousel>
           </Box>
         </Flex>
-        <Stack spacing={{ base: 6, md: 10 }}>
+        {/* <Stack spacing={{ base: 6, md: 10 }}>
           <Box display={"flex"} justifyContent={"center"} as={"header"}>
             <Heading
               mt={"5rem"}
@@ -152,20 +160,27 @@ function CarDetail({ car, setUpdateCar }) {
           >
             EDIT
           </Button>
-        </Stack>
+        </Stack> */}
+        <UpdateCar></UpdateCar>
       </SimpleGrid>
     </Container>
   );
 }
 
 function Carrousel({ car, setUpdateCar }) {
+  const { setModalContent, modalContent } = useContext(GlobalContext);
   const { images, price, description, model, _id } = car;
+
   //DELETE IMG
   const deleteImage = (indexImage) => {
     const imagesDelete = images.filter((item, index) => index != indexImage);
     const carUpdate = { model, price, description, images: imagesDelete };
     UpdateCarFetch(carUpdate, _id).then((x) => console.log(x, "Updated"));
     oneCarForId(_id).then((x) => setUpdateCar(x));
+    setModalContent("Photo Delete");
+    setTimeout(() => {
+      setModalContent("");
+    }, 1000);
   };
 
   const arrImages = images?.map((item) => {
@@ -220,7 +235,7 @@ function Carrousel({ car, setUpdateCar }) {
       justifyContent="center"
     >
       <Flex w="full" overflow="hidden" pos="relative">
-        <PopUpModal></PopUpModal>
+        <PopUpModal modalContent={modalContent}></PopUpModal>
         <Flex h="400px" w="full" {...carouselStyle}>
           {slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
