@@ -14,7 +14,7 @@ export default function GlobalContextProvider({ children }) {
   //MODAL ESTADO
   const [modalContent, setModalContent] = useState("");
 
-  //Ratio Search Bar
+  //RATIO SEARCH BAR
   const [ratioValue, setRatioValue] = useState("1");
 
   //ESTADO DE BUSQUEDA
