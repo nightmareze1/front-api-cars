@@ -220,6 +220,7 @@ function Carrousel({ car, setUpdateCar }) {
       justifyContent="center"
     >
       <Flex w="full" overflow="hidden" pos="relative">
+        <PopUpModal></PopUpModal>
         <Flex h="400px" w="full" {...carouselStyle}>
           {slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
