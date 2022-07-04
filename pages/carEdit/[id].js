@@ -258,11 +258,10 @@ function UpdateCar({ car, setUpdateCar }) {
 		} else {
 			UpdateCarFetch({ ...car, images: namesPhotos }, _id);
 		}
-
 		setModalContent("Car Updated Successfully");
-		oneCarForId(_id).then((x) => setUpdateCar(x));
 
 		setTimeout(() => {
+			oneCarForId(_id).then((x) => setUpdateCar(x));
 			setModalContent("");
 		}, 1000);
 	};
@@ -409,7 +408,7 @@ function UpdateCar({ car, setUpdateCar }) {
 									bg: 200,
 								}}
 							>
-								Update Car
+								Update Info
 							</Button>
 							{/* </form> */}
 						</Stack>
