@@ -24,7 +24,7 @@ export default function GlobalContextProvider({ children }) {
 	//DELETE CAR
 	const deleteCar = (_id) => {
 		fetchCarDelete(_id);
-		getAllCarsFetch(ratioValue).then((x) => setCar(x));
+		getAllCarsFetch(ratioValue).then((x) => setCar(x.results));
 		setModalContent("Car successfully removed");
 		setTimeout(() => {
 			setModalContent("");
@@ -33,22 +33,22 @@ export default function GlobalContextProvider({ children }) {
 
 	//GET ALL CARS
 	const getAllCars = () => {
-		getAllCarsFetch(ratioValue).then((x) => setCar(x));
+		getAllCarsFetch(ratioValue).then((x) => setCar(x.results));
 	};
 	//SEARCH CARS RATIO
 	const serarchCarsRatio = (query, r) => {
-		carsSearchFetch(query, r).then((x) => setCar(x));
+		carsSearchFetch(query, r).then((x) => setCar(x.results));
 	};
 	//SEARCH CARS
 	const serarchCars = (query) => {
-		carsSearchFetch(query, ratioValue).then((x) => setCar(x));
+		carsSearchFetch(query, ratioValue).then((x) => setCar(x.resulst));
 	};
 	//FUNCION PARA BUSCAR CAR OBTENER EL VALOR DE BUSQUEDA
 	const searchInput = ({ target }) => {
 		const { value: mySearch } = target;
 		setSearch(mySearch);
 		if (!mySearch) {
-			getAllCarsFetch(ratioValue).then((x) => setCar(x));
+			getAllCarsFetch(ratioValue).then((x) => setCar(x.results));
 		}
 	};
 
