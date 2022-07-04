@@ -95,17 +95,15 @@ function Carrousel({ car, setUpdateCar }) {
 
 	//DELETE IMG
 	const deleteImage = (imagenId) => {
-		console.log(images);
+		console.log(imagenId);
+		// console.log(images, " imagenes sin modificar");
 		const imagesDelete = images?.filter((item) => item._id !== imagenId);
-		console.log(imagesDelete);
-		console.log(_id);
-		const carUpdate = { model, price, description, images: imagesDelete };
-
-		UpdateCarFetch(carUpdate, _id).then((x) => console.log(x, "update"));
-		oneCarForId(_id).then((x) => setUpdateCar(x));
+		const carUpdate = { _id, model, price, description, images: imagesDelete };
+		UpdateCarFetch(carUpdate, _id);
 		setModalContent("Photo Delete");
 		setTimeout(() => {
 			setModalContent("");
+			oneCarForId(_id).then((x) => setUpdateCar(x));
 		}, 1000);
 	};
 
@@ -162,31 +160,32 @@ function Carrousel({ car, setUpdateCar }) {
 		>
 			<Flex w="full" overflow="hidden" pos="relative">
 				<PopUpModal modalContent={modalContent}></PopUpModal>
-				<Flex h="400px" w="full" {...carouselStyle}>
+				<Flex h="500px" w="full" {...carouselStyle}>
 					{slides.map((slide, sid) => (
 						<Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
-							<Button
-								onClick={() => deleteImage(images[sid - 1]._id)}
-								opacity={0.4}
-								borderRadius={"30px"}
-								mt={"2px"}
-								ml={"2px"}
-								bg="teal"
-								color="white"
-								fontSize="large"
-								p="8px 12px"
-								pos="absolute"
-								right="70"
-								top="0"
-								leftIcon={<BsTrashFill w={5} h={5} />}
-								_hover={{
-									bg: 300,
-									transform: "translateY(1px)",
-									transition: " all 0.2s ease-out",
-								}}
-							>
-								Delete
-							</Button>
+							<Box display="flex" justifyContent="center">
+								<Button
+									onClick={() => deleteImage(images[sid]._id)}
+									rounded={"none"}
+									w={"50"}
+									size={"lg"}
+									p={"7"}
+									bg={useColorModeValue(100, 200)}
+									color={useColorModeValue("white", "gray")}
+									textTransform={"uppercase"}
+									leftIcon={<FiSave w={5} h={5} />}
+									_hover={{
+										// transform: "translateY(2px)",
+										// boxShadow: "lg",
+										transform: "translateY(10px)",
+
+										bg: 200,
+									}}
+								>
+									Delete
+								</Button>
+							</Box>
+
 							<Text
 								opacity={0.6}
 								borderRadius={"30px"}
@@ -197,7 +196,7 @@ function Carrousel({ car, setUpdateCar }) {
 								fontSize="large"
 								p="8px 12px"
 								pos="absolute"
-								top="0"
+								top="60px"
 							>
 								{sid + 1} / {slidesCount}
 							</Text>
