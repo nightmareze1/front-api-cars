@@ -101,7 +101,7 @@ function Carrousel({ car, setUpdateCar }) {
 		console.log(_id);
 		const carUpdate = { model, price, description, images: imagesDelete };
 
-		UpdateCarFetch(carUpdate, _id);
+		UpdateCarFetch(carUpdate, _id).then((x) => console.log(x, "update"));
 		oneCarForId(_id).then((x) => setUpdateCar(x));
 		setModalContent("Photo Delete");
 		setTimeout(() => {
