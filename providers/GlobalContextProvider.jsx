@@ -24,7 +24,7 @@ export default function GlobalContextProvider({ children }) {
 	//DELETE CAR
 	const deleteCar = (_id) => {
 		fetchCarDelete(_id);
-		getAllCarsFetch(ratioValue).then((x) => setCar(x.results));
+		getAllCarsFetch(ratioValue).then((x) => setCar(x));
 		setModalContent("Car successfully removed");
 		setTimeout(() => {
 			setModalContent("");
@@ -33,11 +33,11 @@ export default function GlobalContextProvider({ children }) {
 
 	//GET ALL CARS
 	const getAllCars = () => {
-		getAllCarsFetch(ratioValue).then((x) => setCar(x.results));
+		getAllCarsFetch(ratioValue).then((x) => setCar(x));
 	};
 	//SEARCH CARS RATIO
 	const serarchCarsRatio = (query, r) => {
-		carsSearchFetch(query, r).then((x) => setCar(x.results));
+		carsSearchFetch(query, r).then((x) => setCar(x));
 	};
 	//SEARCH CARS
 	const serarchCars = (query) => {
@@ -48,7 +48,7 @@ export default function GlobalContextProvider({ children }) {
 		const { value: mySearch } = target;
 		setSearch(mySearch);
 		if (!mySearch) {
-			getAllCarsFetch(ratioValue).then((x) => setCar(x.results));
+			getAllCarsFetch(ratioValue).then((x) => setCar(x));
 		}
 	};
 
