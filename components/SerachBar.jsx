@@ -62,19 +62,18 @@ export default function SerachBar() {
 function RadioInput({ ratioValue, setRatioValue }) {
 	var { searchInput, search, setSearch, serarchCars, serarchCarsRatio } =
 		useContext(GlobalContext);
-	console.log(ratioValue);
 	return (
 		<RadioGroup p={"1rem"} onChange={setRatioValue} value={ratioValue}>
 			<Stack direction="row">
 				<Radio
-					onClick={() => serarchCarsRatio(search,"-1")}
+					onClick={() => serarchCarsRatio(search, "-1")}
 					colorScheme={"teal"}
 					value="-1"
 				>
 					More expensive
 				</Radio>
 				<Radio
-					onClick={() => serarchCarsRatio(search,"1")}
+					onClick={() => serarchCarsRatio(search, "1")}
 					colorScheme={"teal"}
 					value="1"
 				>
