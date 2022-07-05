@@ -57,8 +57,10 @@ export const fetchLoginPagePost = async (datos) => {
 };
 
 //GET ALL CARS
-export const getAllCarsFetch = async (order) => {
-	const res = await fetch(`http://localhost:4000/cars/findAll?sort=${order}`);
+export const getAllCarsFetch = async (order, limit = 0, offset = 0) => {
+	const res = await fetch(
+		`http://localhost:4000/cars/findAll?sort=${order}&limit=${limit}&offset=${offset}`
+	);
 	const data = await res.json();
 	return data;
 };
