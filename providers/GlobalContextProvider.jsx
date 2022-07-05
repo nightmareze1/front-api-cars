@@ -24,9 +24,10 @@ export default function GlobalContextProvider({ children }) {
 	//DELETE CAR
 	const deleteCar = (_id) => {
 		fetchCarDelete(_id);
-		getAllCarsFetch(ratioValue).then((x) => setCar(x));
 		setModalContent("Car successfully removed");
 		setTimeout(() => {
+			getAllCarsFetch(ratioValue).then((x) => setCar(x));
+
 			setModalContent("");
 		}, 1500);
 	};
