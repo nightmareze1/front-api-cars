@@ -41,7 +41,7 @@ export default function GlobalContextProvider({ children }) {
 	};
 	//SEARCH CARS
 	const serarchCars = (query) => {
-		carsSearchFetch(query, ratioValue).then((x) => setCar(x.resulst));
+		carsSearchFetch(query, ratioValue).then((x) => setCar(x));
 	};
 	//FUNCION PARA BUSCAR CAR OBTENER EL VALOR DE BUSQUEDA
 	const searchInput = ({ target }) => {
