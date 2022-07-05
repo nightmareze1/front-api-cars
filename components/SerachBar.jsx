@@ -1,6 +1,7 @@
 import { React, useContext, useState } from "react";
 ("react");
 import {
+	FormControl,
 	Box,
 	Text,
 	Input,
@@ -35,42 +36,77 @@ export default function SerachBar() {
 				setRatioValue={setRatioValue}
 			></RadioInput>
 			<Stack
+				pos={"relative"}
 				spacing={2}
 				direction="row"
 				align="center"
 				justifyContent={"center"}
 				width={"full"}
 			>
-				<Input
+				<Stack
+					spacing={2}
+					direction="row"
+					align="center"
+					justifyContent={"center"}
 					pos={"relative"}
-					w={"50rem"}
-					color="teal"
-					fontWeight={"bold"}
-					value={search}
-					onChange={(e) => searchInput(e)}
-					placeholder="Search..."
-					size="lg"
-				/>
-
-				<Button
-					rightIcon={<FiSearch w={5} h={5} />}
-					display={{ base: "flex", md: "inline-flex" }}
-					flexFlow={{ base: "column", md: "row" }}
-					height={{ base: "3rem", md: "3rem" }}
-					fontWeight={600}
-					color={"white"}
-					fontSize={{ base: "small", md: "large" }}
-					bg={100}
-					href={"#"}
-					onClick={() => serarchCars(search)}
-					_hover={{
-						bg: 200,
-						transform: "translateY(5px)",
-						transition: " all 1s ease-out",
-					}}
+					width={"49%"}
 				>
-					Search
-				</Button>
+					<Input
+						pos={"relative"}
+						w={"28rem"}
+						color="teal"
+						fontWeight={"bold"}
+						value={search}
+						onChange={(e) => searchInput(e)}
+						placeholder="Search..."
+						size="lg"
+					/>
+					<Box
+						w={"77%"}
+						bg={"white"}
+						minHeight={"20vh"}
+						height={"auto"}
+						pos="absolute"
+						top="50"
+						left="0"
+						right="0"
+						bottom="0"
+						zIndex={"10"}
+						overflow={"auto"}
+						display={"flex"}
+						justifyContent="flex-start"
+						border="1px"
+						borderColor="gray.200"
+						borderRadius={"md"}
+					>
+						<List ml="10px" mt="10px" position="absolute" spacing={2}>
+							<ListItem>
+								<ListIcon as={FiSearch} color="gray.500" />
+								Ferrari
+							</ListItem>
+						</List>
+					</Box>
+
+					<Button
+						rightIcon={<FiSearch w={5} h={5} />}
+						display={{ base: "flex", md: "inline-flex" }}
+						flexFlow={{ base: "column", md: "row" }}
+						height={{ base: "3rem", md: "3rem" }}
+						fontWeight={600}
+						color={"white"}
+						fontSize={{ base: "small", md: "large" }}
+						bg={100}
+						href={"#"}
+						onClick={() => serarchCars(search)}
+						_hover={{
+							bg: 200,
+							transform: "translateY(5px)",
+							transition: " all 1s ease-out",
+						}}
+					>
+						Search
+					</Button>
+				</Stack>
 			</Stack>
 		</Box>
 	);
