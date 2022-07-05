@@ -79,8 +79,16 @@ export default function SerachBar() {
 						borderColor="gray.200"
 						borderRadius={"md"}
 					>
-						<List ml="10px" mt="10px" position="absolute" spacing={2}>
-							<ListItem>
+						<List w="90%" ml="10px" mt="10px" position="absolute" spacing={2}>
+							<ListItem
+								cursor="pointer"
+								_hover={{
+									transform: "translateY(5px)",
+									transition: " all .6s ease-out",
+									color: "teal",
+									fontWeight: 600,
+								}}
+							>
 								<ListIcon as={FiSearch} color="gray.500" />
 								Ferrari
 							</ListItem>
