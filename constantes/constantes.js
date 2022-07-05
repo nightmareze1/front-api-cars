@@ -65,9 +65,9 @@ export const getAllCarsFetch = async (order, limit = 0, offset = 0) => {
 	return data;
 };
 //GET SEARCH CARS
-export const carsSearchFetch = async (search, order) => {
+export const carsSearchFetch = async (search, order, limit = 0, offset = 0) => {
 	const res = await fetch(
-		`http://localhost:4000/cars/findAll/name?name=${search}&sort=${order}  `
+		`http://localhost:4000/cars/findAll/name?name=${search}&sort=${order}&limit=${limit}&offset=${offset} `
 	);
 	const data = await res.json();
 	return data;
