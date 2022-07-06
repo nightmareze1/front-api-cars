@@ -21,6 +21,22 @@ export default function GlobalContextProvider({ children }) {
 	const [search, setSearch] = useState("");
 	const [car, setCar] = useState([{}]);
 
+	const [predict, setPredict] = useState([{}]);
+
+	//AUTO PREDICT
+	const autoPredictSearch = async (
+		search = "",
+		limit = 1,
+		order = -1,
+		offset = 0
+	) => {
+		const res = await fetch(
+			`http://localhost:4000/cars/findAll/name?name=${search}&sort=${order}&limit=${limit}&offset=${offset} `
+		);
+		const data = await res.json();
+		setPredict(data);
+		console.log(data);
+	};
 	//DELETE CAR
 	const deleteCar = (_id) => {
 		fetchCarDelete(_id);
@@ -44,10 +60,19 @@ export default function GlobalContextProvider({ children }) {
 	const serarchCars = (query) => {
 		carsSearchFetch(query, ratioValue).then((x) => setCar(x));
 	};
+	//SEARCH CARS WITH PREDICT
+	const serarchCarsWithPredict = (query) => {
+		carsSearchFetch(query, ratioValue).then((x) => setCar(x));
+		setTimeout(() => {
+			setSearch("");
+		}, 1000);
+		console.log("click");
+	};
 	//FUNCION PARA BUSCAR CAR OBTENER EL VALOR DE BUSQUEDA
 	const searchInput = ({ target }) => {
 		const { value: mySearch } = target;
 		setSearch(mySearch);
+		autoPredictSearch(mySearch);
 		if (!mySearch) {
 			getAllCarsFetch(ratioValue).then((x) => setCar(x));
 		}
@@ -67,6 +92,9 @@ export default function GlobalContextProvider({ children }) {
 	return (
 		<GlobalContext.Provider
 			value={{
+				serarchCarsWithPredict,
+				predict,
+				setPredict,
 				serarchCarsRatio,
 				carEdit,
 				individualCar,

@@ -17,12 +17,15 @@ import { Radio, RadioGroup } from "@chakra-ui/react";
 
 export default function SerachBar() {
 	const {
+		serarchCarsWithPredict,
 		searchInput,
 		search,
 		setSearch,
 		serarchCars,
 		ratioValue,
 		setRatioValue,
+		predict,
+		setPredict,
 	} = useContext(GlobalContext);
 	return (
 		<Box
@@ -61,39 +64,50 @@ export default function SerachBar() {
 						placeholder="Search..."
 						size="lg"
 					/>
-					<Box
-						w={"77%"}
-						bg={"white"}
-						minHeight={"20vh"}
-						height={"auto"}
-						pos="absolute"
-						top="50"
-						left="0"
-						right="0"
-						bottom="0"
-						zIndex={"10"}
-						overflow={"auto"}
-						display={"flex"}
-						justifyContent="flex-start"
-						border="1px"
-						borderColor="gray.200"
-						borderRadius={"md"}
-					>
-						<List w="90%" ml="10px" mt="10px" position="absolute" spacing={2}>
-							<ListItem
-								cursor="pointer"
-								_hover={{
-									transform: "translateY(5px)",
-									transition: " all .6s ease-out",
-									color: "teal",
-									fontWeight: 600,
-								}}
-							>
-								<ListIcon as={FiSearch} color="gray.500" />
-								Ferrari
-							</ListItem>
-						</List>
-					</Box>
+
+					{search && predict.length > 0 ? (
+						<Box
+							w={"77%"}
+							bg={"white"}
+							minHeight={"20vh"}
+							height={"auto"}
+							pos="absolute"
+							top="50"
+							left="0"
+							right="0"
+							bottom="0"
+							zIndex={"10"}
+							overflow={"auto"}
+							display={"flex"}
+							justifyContent="flex-start"
+							border="1px"
+							borderColor="gray.200"
+							borderRadius={"md"}
+						>
+							<List w="90%" ml="10px" mt="10px" position="absolute" spacing={2}>
+								{predict?.map((prediction) => {
+									const { name, _id } = prediction;
+									return search || predict ? (
+										<ListItem
+											onClick={() => serarchCarsWithPredict(name)}
+											textTransform={"capitalize"}
+											key={_id}
+											cursor="pointer"
+											_hover={{
+												transform: "translateY(5px)",
+												transition: " all .6s ease-out",
+												color: "teal",
+												fontWeight: 600,
+											}}
+										>
+											<ListIcon as={FiSearch} color="gray.500" />
+											{name}
+										</ListItem>
+									) : null;
+								})}
+							</List>
+						</Box>
+					) : null}
 
 					<Button
 						rightIcon={<FiSearch w={5} h={5} />}
