@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { useRouter } from "next/router";
+
+import { ObtenerTokenLocalStorage } from "../constantes/constantes.js";
 import {
 	getAllCarsFetch,
 	carsSearchFetch,
@@ -20,8 +22,22 @@ export default function GlobalContextProvider({ children }) {
 	//ESTADO DE BUSQUEDA
 	const [search, setSearch] = useState("");
 	const [car, setCar] = useState([{}]);
-
+	//ESTADO PREDICT BUSQUEDA
 	const [predict, setPredict] = useState([{}]);
+	//token
+	const [token, setToken] = useState();
+
+	//BORRAR TOKEN
+	const deleteToken = () => {
+		sessionStorage.removeItem("token");
+		console.log("cliked");
+		setToken("");
+	};
+	//OBTENGO EL TOKEN
+	const tokenFunction = async () => {
+		setToken(await ObtenerTokenLocalStorage());
+		console.log(token);
+	};
 
 	//AUTO PREDICT
 	const autoPredictSearch = async (
@@ -92,6 +108,10 @@ export default function GlobalContextProvider({ children }) {
 	return (
 		<GlobalContext.Provider
 			value={{
+				deleteToken,
+				setToken,
+				token,
+				tokenFunction,
 				serarchCarsWithPredict,
 				predict,
 				setPredict,

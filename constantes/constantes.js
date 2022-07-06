@@ -24,7 +24,7 @@ export const ObtenerTokenLocalStorage = async () => {
 	var miToken = await sessionStorage.getItem("token");
 
 	if (miToken) {
-		return miToken;
+		return await miToken;
 	}
 };
 
