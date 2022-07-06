@@ -27,6 +27,7 @@ export default function SerachBar() {
 		predict,
 		setPredict,
 	} = useContext(GlobalContext);
+
 	return (
 		<Box
 			width={"100%"}
@@ -69,7 +70,7 @@ export default function SerachBar() {
 						<Box
 							w={"77%"}
 							bg={"white"}
-							minHeight={"20vh"}
+							minHeight={"10vh"}
 							height={"auto"}
 							pos="absolute"
 							top="50"
