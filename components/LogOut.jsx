@@ -14,29 +14,33 @@ import {
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import GlobalContext from "../context/GlobalContext";
+import PopUpModal from "./PopUpModal";
 
 export default function LogOut() {
-	const { deleteToken } = useContext(GlobalContext);
+	const { deleteToken, modalContent } = useContext(GlobalContext);
 	return (
-		<Menu>
-			<MenuButton
-				colorScheme={"teal"}
-				as={Button}
-				rightIcon={<ChevronDownIcon />}
-			>
-				Your Acount
-			</MenuButton>
-			<MenuList>
-				<MenuItem
-					onClick={() => deleteToken()}
-					display={"flex"}
-					justifyContent={"space-evenly"}
-					minH="48px"
+		<>
+			<PopUpModal modalContent={modalContent}></PopUpModal>
+			<Menu>
+				<MenuButton
+					colorScheme={"teal"}
+					as={Button}
+					rightIcon={<ChevronDownIcon />}
 				>
-					<AiOutlinePoweroff />
-					<span>Log out</span>
-				</MenuItem>
-			</MenuList>
-		</Menu>
+					Your Acount
+				</MenuButton>
+				<MenuList>
+					<MenuItem
+						onClick={() => deleteToken()}
+						display={"flex"}
+						justifyContent={"space-evenly"}
+						minH="48px"
+					>
+						<AiOutlinePoweroff />
+						<span>Log out</span>
+					</MenuItem>
+				</MenuList>
+			</Menu>
+		</>
 	);
 }

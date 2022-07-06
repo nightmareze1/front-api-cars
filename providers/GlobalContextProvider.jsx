@@ -22,6 +22,7 @@ export default function GlobalContextProvider({ children }) {
 	//ESTADO DE BUSQUEDA
 	const [search, setSearch] = useState("");
 	const [car, setCar] = useState([{}]);
+
 	//ESTADO PREDICT BUSQUEDA
 	const [predict, setPredict] = useState([{}]);
 	//token
@@ -29,9 +30,13 @@ export default function GlobalContextProvider({ children }) {
 
 	//BORRAR TOKEN
 	const deleteToken = () => {
-		sessionStorage.removeItem("token");
-		console.log("cliked");
-		setToken("");
+		setModalContent("Log out acount ");
+
+		setTimeout(() => {
+			setModalContent("");
+			sessionStorage.removeItem("token");
+			setToken("");
+		}, 1000);
 	};
 	//OBTENGO EL TOKEN
 	const tokenFunction = async () => {
