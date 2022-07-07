@@ -42,7 +42,7 @@ export default function GlobalContextProvider({ children }) {
 	//OBTENGO EL TOKEN
 	const tokenFunction = async () => {
 		setToken(await ObtenerTokenLocalStorage());
-		console.log(token);
+		////console.log(token);
 	};
 
 	//AUTO PREDICT
@@ -57,7 +57,7 @@ export default function GlobalContextProvider({ children }) {
 		);
 		const data = await res.json();
 		setPredict(data);
-		console.log(data);
+		//console.log(data);
 	};
 	//DELETE CAR
 	const deleteCar = (_id) => {
@@ -88,7 +88,7 @@ export default function GlobalContextProvider({ children }) {
 		setTimeout(() => {
 			setSearch("");
 		}, 1000);
-		console.log("click");
+		//console.log("click");
 	};
 	//FUNCION PARA BUSCAR CAR OBTENER EL VALOR DE BUSQUEDA
 	const searchInput = ({ target }) => {

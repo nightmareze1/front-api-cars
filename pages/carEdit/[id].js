@@ -42,8 +42,6 @@ import ContainerHF from "../../components/ContainerHF";
 export default function IndividualCar({ car }) {
 	const [updateCar, setUpdateCar] = useState(car);
 	const router = useRouter();
-	//console.log(car);
-	//console.log(router.query);
 
 	const { id } = router.query;
 
@@ -96,7 +94,6 @@ function Carrousel({ car, setUpdateCar }) {
 	//DELETE IMG
 	const deleteImage = (imagenId) => {
 		console.log(imagenId);
-		// console.log(images, " imagenes sin modificar");
 		const imagesDelete = images?.filter((item) => item._id !== imagenId);
 		const carUpdate = { _id, model, price, description, images: imagesDelete };
 		UpdateCarFetch(carUpdate, _id);
@@ -160,30 +157,36 @@ function Carrousel({ car, setUpdateCar }) {
 		>
 			<Flex w="full" overflow="hidden" pos="relative">
 				<PopUpModal modalContent={modalContent}></PopUpModal>
-				<Flex h="500px" w="full" {...carouselStyle}>
+				<Flex
+					h={slidesCount > 1 ? "500px" : "400px"}
+					w="full"
+					{...carouselStyle}
+				>
 					{slides.map((slide, sid) => (
 						<Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
 							<Box display="flex" justifyContent="center">
-								<Button
-									onClick={() => deleteImage(images[sid]._id)}
-									rounded={"none"}
-									w={"50"}
-									size={"lg"}
-									p={"7"}
-									bg={useColorModeValue(100, 200)}
-									color={useColorModeValue("white", "gray")}
-									textTransform={"uppercase"}
-									leftIcon={<FiSave w={5} h={5} />}
-									_hover={{
-										// transform: "translateY(2px)",
-										// boxShadow: "lg",
-										transform: "translateY(10px)",
+								{slidesCount > 1 && (
+									<Button
+										onClick={() => deleteImage(images[sid]._id)}
+										rounded={"none"}
+										w={"50"}
+										size={"lg"}
+										p={"7"}
+										bg={useColorModeValue(100, 200)}
+										color={useColorModeValue("white", "gray")}
+										textTransform={"uppercase"}
+										leftIcon={<FiSave w={5} h={5} />}
+										_hover={{
+											// transform: "translateY(2px)",
+											// boxShadow: "lg",
+											transform: "translateY(10px)",
 
-										bg: 200,
-									}}
-								>
-									Delete
-								</Button>
+											bg: 200,
+										}}
+									>
+										Delete
+									</Button>
+								)}
 							</Box>
 
 							<Text
@@ -196,7 +199,7 @@ function Carrousel({ car, setUpdateCar }) {
 								fontSize="large"
 								p="8px 12px"
 								pos="absolute"
-								top="60px"
+								top={slidesCount > 1 ? "60px" : "0"}
 							>
 								{sid + 1} / {slidesCount}
 							</Text>
@@ -212,12 +215,17 @@ function Carrousel({ car, setUpdateCar }) {
 						</Box>
 					))}
 				</Flex>
-				<Text {...arrowStyles} left="0" onClick={prevSlide}>
-					&#10094;
-				</Text>
-				<Text {...arrowStyles} right="0" onClick={nextSlide}>
-					&#10095;
-				</Text>
+				{slidesCount > 1 && (
+					<Text {...arrowStyles} left="0" onClick={prevSlide}>
+						&#10094;
+					</Text>
+				)}
+				{slidesCount > 1 && (
+					<Text {...arrowStyles} right="0" onClick={nextSlide}>
+						&#10095;
+					</Text>
+				)}
+
 				<HStack justify="center" pos="absolute" bottom="8px" w="full">
 					{slides.map((_, slide) => (
 						<Box
