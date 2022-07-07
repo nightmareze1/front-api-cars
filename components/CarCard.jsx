@@ -17,8 +17,18 @@ import { fetchCarDelete } from "../constantes/constantes";
 
 export default function CarCard() {
 	var imagen;
-	const { car, setCar, deleteCar, modalContent, individualCar, carEdit } =
-		useContext(GlobalContext);
+	const {
+		car,
+		setCar,
+		deleteCar,
+		modalContent,
+		individualCar,
+		carEdit,
+		setToken,
+		token,
+		tokenFunction,
+	} = useContext(GlobalContext);
+	console.log(token);
 	return car?.map((item, index) => {
 		const { _id, name: model, price, description, images } = item;
 		if (images) {
@@ -106,6 +116,7 @@ export default function CarCard() {
 
 						<Stack direction={"row"} align={"center"}>
 							<Button
+								disabled={!token ? true : false}
 								onClick={() => deleteCar(_id)}
 								leftIcon={<BsTrashFill w={5} h={5} />}
 								display={{ base: "none", md: "inline-flex" }}
@@ -123,6 +134,7 @@ export default function CarCard() {
 								Delete
 							</Button>
 							<Button
+								disabled={!token ? true : false}
 								onClick={() => carEdit(_id)}
 								leftIcon={<FiEdit w={5} h={5} />}
 								display={{ base: "none", md: "inline-flex" }}

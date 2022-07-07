@@ -38,17 +38,23 @@ import {
 import GlobalContext from "../../context/GlobalContext";
 import PopUpModal from "../../components/PopUpModal";
 import ContainerHF from "../../components/ContainerHF";
+import NeedSession from "../../components/NeedSession";
 
 export default function IndividualCar({ car }) {
 	const [updateCar, setUpdateCar] = useState(car);
 	const router = useRouter();
+	const { setToken, token, tokenFunction } = useContext(GlobalContext);
 
 	const { id } = router.query;
 
 	return (
 		<ContainerHF>
 			<Box>
-				{<CarDetail car={updateCar} setUpdateCar={setUpdateCar}></CarDetail>}
+				{token ? (
+					<CarDetail car={updateCar} setUpdateCar={setUpdateCar}></CarDetail>
+				) : (
+					<NeedSession></NeedSession>
+				)}
 			</Box>
 		</ContainerHF>
 	);
