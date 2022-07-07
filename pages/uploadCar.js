@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import UploadCar from "../components/UploadCar";
 import ContainerHF from "../components/ContainerHF";
+import GlobalContext from "../context/GlobalContext";
+import NeedSession from "../components/NeedSession";
 export default function signUp() {
-  return (
-    <ContainerHF>
-      <UploadCar></UploadCar>
-    </ContainerHF>
-  );
+	const { setToken, token, tokenFunction } = useContext(GlobalContext);
+
+	return (
+		<ContainerHF>
+			{token ? <UploadCar></UploadCar> : <NeedSession></NeedSession>}
+		</ContainerHF>
+	);
 }
