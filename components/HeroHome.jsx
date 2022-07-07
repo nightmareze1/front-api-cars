@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 import {
 	Button,
@@ -16,6 +16,11 @@ import {
 
 export default function HeroHome() {
 	const { setToken, token, tokenFunction } = useContext(GlobalContext);
+	useEffect(() => {
+		tokenFunction();
+
+		return () => {};
+	}, [token]);
 
 	return (
 		<Container

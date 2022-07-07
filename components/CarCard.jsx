@@ -15,9 +15,6 @@ import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { fetchCarDelete } from "../constantes/constantes";
 
-const IMAGE =
-	"https://cdn-1.motorsport.com/images/amp/6n9yKwOY/s1000/ferrari-296-gt3-sketch-1.jpg";
-
 export default function CarCard() {
 	var imagen;
 	const { car, setCar, deleteCar, modalContent, individualCar, carEdit } =
