@@ -56,7 +56,7 @@ export default function SignUp() {
 			let username = formData.get("username");
 			let password = formData.get("password");
 			let email = formData.get("email");
-			console.log(x.error);
+			//console.log(x.error);
 
 			// setTimeout(() => {
 			//   setModalContent(
