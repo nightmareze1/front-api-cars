@@ -65,15 +65,9 @@ export default function SignUp() {
 			//
 			// }, 1000);
 
-			if (
-				(x.error = `Users validation failed: email: Path "email" is invalid (${email}).`)
-			) {
-			}
-			if (
-				(x.error = `Users validation failed: username: Path "username" is invalid (${username}).`)
-			) {
+			if (x.error) {
 				setTimeout(() => {
-					setModalContent("error en el usuario");
+					setModalContent(x.error);
 				}, 1000);
 			}
 
@@ -168,7 +162,13 @@ export default function SignUp() {
 						<Stack spacing={4}>
 							{/* <form ref={refForm}> */}
 
-							<FormLabel>Username</FormLabel>
+							<FormLabel>
+								Username{" "}
+								<Text color={"gray.500"}>
+									(maximum length 16 at least one number and one capital
+									letter):
+								</Text>
+							</FormLabel>
 							<Input
 								required
 								placeholder="Username"
@@ -194,7 +194,9 @@ export default function SignUp() {
 								}}
 							/>
 
-							<FormLabel>Email</FormLabel>
+							<FormLabel>
+								Email <Text color={"gray.500"}>(example@gmail.com)</Text>
+							</FormLabel>
 							<Input
 								required
 								name="email"
