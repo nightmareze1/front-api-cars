@@ -14,7 +14,13 @@ import {
 
 export default function NeedSession() {
 	return (
-		<>
+		<Box
+			position={"relative"}
+			w={"full"}
+			backgroundSize={"cover"}
+			backgroundPosition={"25% 30%"}
+			backgroundImage={"linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);"}
+		>
 			<Container maxW={"3xl"}>
 				<Stack
 					as={Box}
@@ -46,12 +52,18 @@ export default function NeedSession() {
 						>
 							Register
 						</Button>
-						<Button as={"a"} href={"/signIn"} rounded={"10px"} px={6}>
+						<Button
+							colorScheme={"blackAlpha"}
+							as={"a"}
+							href={"/signIn"}
+							rounded={"10px"}
+							px={6}
+						>
 							Log In
 						</Button>
 					</Stack>
 				</Stack>
 			</Container>
-		</>
+		</Box>
 	);
 }
