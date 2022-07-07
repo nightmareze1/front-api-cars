@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { useRouter } from "next/router";
+import { verify } from "jsonwebtoken";
 
 import { ObtenerTokenLocalStorage } from "../constantes/constantes.js";
 import {

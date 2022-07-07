@@ -145,14 +145,14 @@ function RadioInput({ ratioValue, setRatioValue }) {
 					colorScheme={"teal"}
 					value="-1"
 				>
-					More expensive
+					High price
 				</Radio>
 				<Radio
 					onClick={() => serarchCarsRatio(search, "1")}
 					colorScheme={"teal"}
 					value="1"
 				>
-					Cheaper
+					Low price
 				</Radio>
 			</Stack>
 		</RadioGroup>
