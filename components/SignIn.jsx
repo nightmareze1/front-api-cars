@@ -78,7 +78,7 @@ export default function SigIn() {
 			};
 			fetchPost(user);
 		} else {
-			setModalContent("faltan datos ");
+			setModalContent("Missing dates");
 			setTimeout(() => {
 				setModalContent("");
 			}, 1000);
