@@ -60,7 +60,8 @@ export default function GlobalContextProvider({ children }) {
 		//console.log(data);
 	};
 	//DELETE CAR
-	const deleteCar = (_id) => {
+	const deleteCar = async (_id) => {
+		console.log(await ObtenerTokenLocalStorage());
 		fetchCarDelete(_id);
 		setModalContent("Car successfully removed");
 		setTimeout(() => {

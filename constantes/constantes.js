@@ -26,6 +26,7 @@ export const ObtenerTokenLocalStorage = async () => {
 	if (miToken) {
 		return await miToken;
 	}
+	console.log(miToken, "este es mi token desde constantes");
 };
 
 //FETCH CREATE USER
@@ -86,7 +87,7 @@ export const fetchCarDelete = async (id) => {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
-			// token: JSON.parse(await ObtenerTokenLocalStorage())?.token,
+			token: JSON.parse(await ObtenerTokenLocalStorage()),
 		},
 	});
 };
@@ -108,7 +109,7 @@ export const createCarFetch = async (datos) => {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
-			// token: JSON.parse(await ObtenerTokenLocalStorage())?.token,
+			token: JSON.parse(await ObtenerTokenLocalStorage()),
 		},
 		body: JSON.stringify(datos),
 	});
@@ -123,7 +124,7 @@ export const UpdateCarFetch = async (datos, id) => {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
-			// token: JSON.parse(await ObtenerTokenLocalStorage())?.token,
+			token: JSON.parse(await ObtenerTokenLocalStorage()),
 		},
 		body: JSON.stringify(datos),
 	});

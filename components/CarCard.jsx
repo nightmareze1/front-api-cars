@@ -28,7 +28,6 @@ export default function CarCard() {
 		token,
 		tokenFunction,
 	} = useContext(GlobalContext);
-	console.log(token);
 	return car?.map((item, index) => {
 		const { _id, name: model, price, description, images } = item;
 		if (images) {
