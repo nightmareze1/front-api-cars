@@ -1,35 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cars Back Api
 
-## Getting Started
+> Estas son las instrucciones de la aplicación Online (Cars Front Api)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Contenidos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Puede hacer click sobre los contenidos para hacer una búsqueda más rápida
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [Descripción ](#Descripción)
+- [Users ](#Users)
+- [Token ](#Token)
+- [Como Usarla](#Como-Usarla)
+- [Desarrollador](#Desarrollador)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Descripción
 
-## Learn More
+Este es el front Cars api, es una aplicación en la cual se pueden cargar autos simulando la carga, la edición y la eliminación de autos como así también el registrarse en la misma aplicación. El loguearse le va a permitir cargar editar los productos, que en esta aplicación en particular son autos
 
-To learn more about Next.js, take a look at the following resources:
+#### Tecnologias Utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js
+- NextJs
+- Chakra-ui
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[Volver al inicio](#Contenidos)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Como Usarla
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# front-api-cars
+#### Instalación
+
+Abrir un terminal y ejecutar el comando docker-compose up de esa manera se va a correr el contenedor de docker, pudiendo asi utilizar la aplicacion de next en el purto 3000
+
+## Token
+
+Todas las rutas a excepción de las de del tipo GET o create user y login llevan el token en las cabeceras, para que estas puedan funcionar de manera correcta. Si lo hace desde postman tiene que ingresar los datos de la siguiente forma, donde la key es token y el valor tiene que ser su token
+KEY:token VALUE: su token.
+
+## Recomendaciones
+
+Le recomiendo crearse un usuario desde el inicio, ya que de no hacerlo no podrá cargar autos, como asi tampoco podra tener accesos a eliminar o editar las especificaciones de los mismos. En caso de querer buscar o ver autos que ya se encuentran en la base, eso si lo podrá hacer. Si desea eliminar usuarios, puede hacerlo desde la aplicación del back-end.
+
+## Desarrollador
+
+- Ezequiel Rey - [eze.rey92@gmail.com]
+
+[Volver al inicio](#Contenidos)
