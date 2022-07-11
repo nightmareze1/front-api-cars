@@ -9,10 +9,10 @@
 Puede hacer click sobre los contenidos para hacer una búsqueda más rápida
 
 - [Descripción ](#Descripción)
-- [Users ](#Users)
 - [Token ](#Token)
 - [Como Usarla](#Como-Usarla)
 - [Desarrollador](#Desarrollador)
+- [Recomendaciones](#Recomendaciones)
 
 ---
 
