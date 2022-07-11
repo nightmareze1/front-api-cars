@@ -34,16 +34,16 @@ Este es el front Cars api, es una aplicación en la cual se pueden cargar autos 
 
 #### Instalación
 
-Abrir un terminal y ejecutar el comando docker-compose up de esa manera se va a correr el contenedor de docker, pudiendo asi utilizar la aplicacion de next en el purto 3000
+Abrir un terminal y ejecutar el comando docker-compose up de esa manera se va a correr el contenedor de docker, pudiendo así utilizar la aplicación de next en el puerto 3000
 
 ## Token
 
-Todas las rutas a excepción de las de del tipo GET o create user y login llevan el token en las cabeceras, para que estas puedan funcionar de manera correcta. Si lo hace desde postman tiene que ingresar los datos de la siguiente forma, donde la key es token y el valor tiene que ser su token
+Todas las rutas, a excepción de las de del tipo GET o create user y login llevan el token en las cabeceras, para que estas puedan funcionar de manera correcta. Si lo hace desde postman tiene que ingresar los datos de la siguiente forma, donde la key es token y el valor tiene que ser su token
 KEY:token VALUE: su token.
 
 ## Recomendaciones
 
-Le recomiendo crearse un usuario desde el inicio, ya que de no hacerlo no podrá cargar autos, como asi tampoco podra tener accesos a eliminar o editar las especificaciones de los mismos. En caso de querer buscar o ver autos que ya se encuentran en la base, eso si lo podrá hacer. Si desea eliminar usuarios, puede hacerlo desde la aplicación del back-end.
+Le recomiendo crearse un usuario desde el inicio, ya que de no hacerlo no podrá cargar autos, como así tampoco podrá tener accesos a eliminar o editar las especificaciones de los mismos. En caso de querer buscar o ver autos que ya se encuentran en la base, eso si lo podrá hacer. Si desea eliminar usuarios, puede hacerlo desde la aplicación del back-end.
 
 ## Desarrollador
 
